@@ -1,0 +1,3 @@
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir

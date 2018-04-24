@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o  -o EDA2TrabalhoPratico 
