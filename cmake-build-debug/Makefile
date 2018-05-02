@@ -123,6 +123,33 @@ EDA2TrabalhoPratico/fast:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/build
 .PHONY : EDA2TrabalhoPratico/fast
 
+BridgeList.o: BridgeList.cpp.o
+
+.PHONY : BridgeList.o
+
+# target to build an object file
+BridgeList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.o
+.PHONY : BridgeList.cpp.o
+
+BridgeList.i: BridgeList.cpp.i
+
+.PHONY : BridgeList.i
+
+# target to preprocess a source file
+BridgeList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.i
+.PHONY : BridgeList.cpp.i
+
+BridgeList.s: BridgeList.cpp.s
+
+.PHONY : BridgeList.s
+
+# target to generate assembly for a file
+BridgeList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.s
+.PHONY : BridgeList.cpp.s
+
 CityList.o: CityList.cpp.o
 
 .PHONY : CityList.o
@@ -149,6 +176,33 @@ CityList.s: CityList.cpp.s
 CityList.cpp.s:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.s
 .PHONY : CityList.cpp.s
+
+HouseList.o: HouseList.cpp.o
+
+.PHONY : HouseList.o
+
+# target to build an object file
+HouseList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.o
+.PHONY : HouseList.cpp.o
+
+HouseList.i: HouseList.cpp.i
+
+.PHONY : HouseList.i
+
+# target to preprocess a source file
+HouseList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.i
+.PHONY : HouseList.cpp.i
+
+HouseList.s: HouseList.cpp.s
+
+.PHONY : HouseList.s
+
+# target to generate assembly for a file
+HouseList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.s
+.PHONY : HouseList.cpp.s
 
 StreetList.o: StreetList.cpp.o
 
@@ -213,9 +267,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... EDA2TrabalhoPratico"
+	@echo "... BridgeList.o"
+	@echo "... BridgeList.i"
+	@echo "... BridgeList.s"
 	@echo "... CityList.o"
 	@echo "... CityList.i"
 	@echo "... CityList.s"
+	@echo "... HouseList.o"
+	@echo "... HouseList.i"
+	@echo "... HouseList.s"
 	@echo "... StreetList.o"
 	@echo "... StreetList.i"
 	@echo "... StreetList.s"

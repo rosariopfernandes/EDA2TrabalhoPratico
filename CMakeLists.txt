@@ -3,4 +3,5 @@ project(EDA2TrabalhoPratico)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(EDA2TrabalhoPratico main.cpp CityList.cpp CityList.h StreetList.cpp StreetList.h)
+add_executable(EDA2TrabalhoPratico main.cpp CityList.cpp CityList.h StreetList.cpp StreetList.h HouseList.cpp
+        HouseList.h BridgeList.cpp BridgeList.h)

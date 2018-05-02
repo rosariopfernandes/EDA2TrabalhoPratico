@@ -11,6 +11,7 @@ public:
     void add();
     void printList();
 }*/;
+class HouseList;
 
 class CityList {
 public:
@@ -19,6 +20,7 @@ public:
         string name;
         City* next;
         StreetList* streetList;
+        HouseList* houseList;
         City(int id, string name);
     };
 

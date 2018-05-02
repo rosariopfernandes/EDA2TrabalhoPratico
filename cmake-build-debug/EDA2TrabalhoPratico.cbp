@@ -84,10 +84,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BridgeList.cpp">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BridgeList.h">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.cpp">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.cpp">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StreetList.cpp">

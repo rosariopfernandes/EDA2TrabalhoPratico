@@ -6,6 +6,7 @@ CityList::City::City(int id, string name) {
     this->name = name;
     this->next = NULL;
     this->streetList = NULL;
+    this->houseList = NULL;
 }
 
 /**
