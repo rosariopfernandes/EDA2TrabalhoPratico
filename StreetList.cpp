@@ -21,6 +21,7 @@ StreetList::Street::Street(int id, double distance, int holesNr, int thievesNr, 
  */
 StreetList::StreetList() {
     head = NULL;
+    tail = NULL;
 }
 
 bool StreetList::isEmpty() {
