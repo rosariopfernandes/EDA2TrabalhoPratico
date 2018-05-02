@@ -123,6 +123,60 @@ EDA2TrabalhoPratico/fast:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/build
 .PHONY : EDA2TrabalhoPratico/fast
 
+CityList.o: CityList.cpp.o
+
+.PHONY : CityList.o
+
+# target to build an object file
+CityList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.o
+.PHONY : CityList.cpp.o
+
+CityList.i: CityList.cpp.i
+
+.PHONY : CityList.i
+
+# target to preprocess a source file
+CityList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.i
+.PHONY : CityList.cpp.i
+
+CityList.s: CityList.cpp.s
+
+.PHONY : CityList.s
+
+# target to generate assembly for a file
+CityList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.s
+.PHONY : CityList.cpp.s
+
+StreetList.o: StreetList.cpp.o
+
+.PHONY : StreetList.o
+
+# target to build an object file
+StreetList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o
+.PHONY : StreetList.cpp.o
+
+StreetList.i: StreetList.cpp.i
+
+.PHONY : StreetList.i
+
+# target to preprocess a source file
+StreetList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.i
+.PHONY : StreetList.cpp.i
+
+StreetList.s: StreetList.cpp.s
+
+.PHONY : StreetList.s
+
+# target to generate assembly for a file
+StreetList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.s
+.PHONY : StreetList.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -159,6 +213,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... EDA2TrabalhoPratico"
+	@echo "... CityList.o"
+	@echo "... CityList.i"
+	@echo "... CityList.s"
+	@echo "... StreetList.o"
+	@echo "... StreetList.i"
+	@echo "... StreetList.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
