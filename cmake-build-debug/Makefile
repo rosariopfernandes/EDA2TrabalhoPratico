@@ -204,6 +204,60 @@ HouseList.cpp.s:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.s
 .PHONY : HouseList.cpp.s
 
+RouteList.o: RouteList.cpp.o
+
+.PHONY : RouteList.o
+
+# target to build an object file
+RouteList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o
+.PHONY : RouteList.cpp.o
+
+RouteList.i: RouteList.cpp.i
+
+.PHONY : RouteList.i
+
+# target to preprocess a source file
+RouteList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.i
+.PHONY : RouteList.cpp.i
+
+RouteList.s: RouteList.cpp.s
+
+.PHONY : RouteList.s
+
+# target to generate assembly for a file
+RouteList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.s
+.PHONY : RouteList.cpp.s
+
+StopoverQueue.o: StopoverQueue.cpp.o
+
+.PHONY : StopoverQueue.o
+
+# target to build an object file
+StopoverQueue.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o
+.PHONY : StopoverQueue.cpp.o
+
+StopoverQueue.i: StopoverQueue.cpp.i
+
+.PHONY : StopoverQueue.i
+
+# target to preprocess a source file
+StopoverQueue.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.i
+.PHONY : StopoverQueue.cpp.i
+
+StopoverQueue.s: StopoverQueue.cpp.s
+
+.PHONY : StopoverQueue.s
+
+# target to generate assembly for a file
+StopoverQueue.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.s
+.PHONY : StopoverQueue.cpp.s
+
 StreetList.o: StreetList.cpp.o
 
 .PHONY : StreetList.o
@@ -276,6 +330,12 @@ help:
 	@echo "... HouseList.o"
 	@echo "... HouseList.i"
 	@echo "... HouseList.s"
+	@echo "... RouteList.o"
+	@echo "... RouteList.i"
+	@echo "... RouteList.s"
+	@echo "... StopoverQueue.o"
+	@echo "... StopoverQueue.i"
+	@echo "... StopoverQueue.s"
 	@echo "... StreetList.o"
 	@echo "... StreetList.i"
 	@echo "... StreetList.s"

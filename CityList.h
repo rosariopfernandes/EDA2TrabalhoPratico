@@ -18,9 +18,9 @@ public:
     struct City{
         int id;
         string name;
-        City* next;
         StreetList* streetList;
         HouseList* houseList;
+        City* next;
         City(int id, string name);
     };
 
