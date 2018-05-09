@@ -243,7 +243,7 @@
       <workItem from="1525435272133" duration="193000" />
       <workItem from="1525441271577" duration="1235000" />
       <workItem from="1525775143770" duration="3026000" />
-      <workItem from="1525907778038" duration="1256000" />
+      <workItem from="1525907778038" duration="1295000" />
     </task>
     <task id="LOCAL-00001" summary="1. MAPA_DO_JOGO&#10;Created CityList and StreetList. That's the first graph">
       <created>1525277388474</created>
@@ -273,11 +273,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525777565579</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="6.1 CALENDARIO_DE_JOGOS&#10;Created a structure for Football matches">
+      <created>1525909065434</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525909065434</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23719000" />
+    <option name="totallyTimeSpent" value="23758000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="346" y="-4" width="1303" height="780" extended-state="6" />
@@ -334,7 +341,8 @@
     <MESSAGE value="StreetList's constructor was missing a tail initializer" />
     <MESSAGE value="3. ADICIONAR_CASAS&#10;Created HouseList and BridgeList, forming a graph.&#10;CityList now contains a HouseList. Each City now has a list of houses. The houses are connected by bridges." />
     <MESSAGE value="4. ROTAS_AEREAS&#10;Created a structure for Routes and a structure for stopovers" />
-    <option name="LAST_COMMIT_MESSAGE" value="4. ROTAS_AEREAS&#10;Created a structure for Routes and a structure for stopovers" />
+    <MESSAGE value="6.1 CALENDARIO_DE_JOGOS&#10;Created a structure for Football matches" />
+    <option name="LAST_COMMIT_MESSAGE" value="6.1 CALENDARIO_DE_JOGOS&#10;Created a structure for Football matches" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
