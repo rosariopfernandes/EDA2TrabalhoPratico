@@ -204,6 +204,33 @@ HouseList.cpp.s:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.s
 .PHONY : HouseList.cpp.s
 
+MatchQueue.o: MatchQueue.cpp.o
+
+.PHONY : MatchQueue.o
+
+# target to build an object file
+MatchQueue.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o
+.PHONY : MatchQueue.cpp.o
+
+MatchQueue.i: MatchQueue.cpp.i
+
+.PHONY : MatchQueue.i
+
+# target to preprocess a source file
+MatchQueue.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.i
+.PHONY : MatchQueue.cpp.i
+
+MatchQueue.s: MatchQueue.cpp.s
+
+.PHONY : MatchQueue.s
+
+# target to generate assembly for a file
+MatchQueue.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.s
+.PHONY : MatchQueue.cpp.s
+
 RouteList.o: RouteList.cpp.o
 
 .PHONY : RouteList.o
@@ -330,6 +357,9 @@ help:
 	@echo "... HouseList.o"
 	@echo "... HouseList.i"
 	@echo "... HouseList.s"
+	@echo "... MatchQueue.o"
+	@echo "... MatchQueue.i"
+	@echo "... MatchQueue.s"
 	@echo "... RouteList.o"
 	@echo "... RouteList.i"
 	@echo "... RouteList.s"

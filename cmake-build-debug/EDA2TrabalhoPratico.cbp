@@ -102,6 +102,12 @@
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.cpp">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.cpp">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>

@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.o"
   "CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o"
   "CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o"
+  "CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o"
   "EDA2TrabalhoPratico.pdb"
   "EDA2TrabalhoPratico"
 )

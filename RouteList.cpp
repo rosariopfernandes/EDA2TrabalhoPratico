@@ -7,7 +7,6 @@ RouteList::Route::Route(int idRoute, int firstCity, int lastCity) {
     this->lastCity = lastCity;
     next = NULL;
     stopoverQueue = NULL;
-
 }
 
 RouteList::RouteList() {
