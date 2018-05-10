@@ -1,6 +1,8 @@
+#include <iomanip>
+#include <sstream>
 #include "MatchQueue.h"
 
-MatchQueue::Match::Match(int teamHome, int teamAway, string score, string date) {
+MatchQueue::Match::Match(int teamHome, int teamAway, string score, tm* date) {
     this->teamHome = teamHome;
     this->teamAway = teamAway;
     this->score = score;
@@ -33,13 +35,4 @@ MatchQueue::Match *MatchQueue::dequeue() {
     Match* Match = head;
     head = head->next;
     return Match;
-}
-
-void MatchQueue::printQueue() {
-
-}
-
-void MatchQueue::printMatch(MatchQueue::Match *Match) {
-    cout << Match->teamHome << " VS " << Match->teamAway << " ";
-    cout << Match->date << endl;
 }
