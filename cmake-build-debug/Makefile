@@ -231,6 +231,33 @@ MatchQueue.cpp.s:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.s
 .PHONY : MatchQueue.cpp.s
 
+RoundList.o: RoundList.cpp.o
+
+.PHONY : RoundList.o
+
+# target to build an object file
+RoundList.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o
+.PHONY : RoundList.cpp.o
+
+RoundList.i: RoundList.cpp.i
+
+.PHONY : RoundList.i
+
+# target to preprocess a source file
+RoundList.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.i
+.PHONY : RoundList.cpp.i
+
+RoundList.s: RoundList.cpp.s
+
+.PHONY : RoundList.s
+
+# target to generate assembly for a file
+RoundList.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.s
+.PHONY : RoundList.cpp.s
+
 RouteList.o: RouteList.cpp.o
 
 .PHONY : RouteList.o
@@ -360,6 +387,9 @@ help:
 	@echo "... MatchQueue.o"
 	@echo "... MatchQueue.i"
 	@echo "... MatchQueue.s"
+	@echo "... RoundList.o"
+	@echo "... RoundList.i"
+	@echo "... RoundList.s"
 	@echo "... RouteList.o"
 	@echo "... RouteList.i"
 	@echo "... RouteList.s"

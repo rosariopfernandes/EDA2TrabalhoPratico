@@ -7,17 +7,34 @@ CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.o: ../HouseList.h
 
 CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.o: ../CityList.cpp
 CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.o: ../CityList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.o: ../HouseList.h
 
 CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.o: ../HouseList.cpp
 CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.o: ../HouseList.h
 
+CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o: ../MatchQueue.cpp
+CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o: ../MatchQueue.h
+
+CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o: ../MatchQueue.h
+CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o: ../RoundList.cpp
+CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o: ../RoundList.h
+
+CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o: ../RouteList.cpp
+CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o: ../RouteList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o: ../StopoverQueue.h
+
+CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o: ../StopoverQueue.cpp
+CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o: ../StopoverQueue.h
+
 CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o: ../CityList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o: ../HouseList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o: ../StreetList.cpp
 CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o: ../StreetList.h
 
-CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../BridgeList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../CityList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../HouseList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../MatchQueue.h
+CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../RoundList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../StreetList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o: ../main.cpp
 

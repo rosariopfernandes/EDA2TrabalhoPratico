@@ -8,16 +8,33 @@ CMakeFiles/EDA2TrabalhoPratico.dir/BridgeList.cpp.o
 CMakeFiles/EDA2TrabalhoPratico.dir/CityList.cpp.o
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.cpp
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/HouseList.cpp.o
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.cpp
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.cpp
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h
+CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.cpp
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.h
+CMakeFiles/EDA2TrabalhoPratico.dir/RouteList.cpp.o
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.cpp
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.h
+CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.cpp
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.h
 CMakeFiles/EDA2TrabalhoPratico.dir/StreetList.cpp.o
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StreetList.cpp
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StreetList.h
 CMakeFiles/EDA2TrabalhoPratico.dir/main.cpp.o
- /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BridgeList.h
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/HouseList.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h
+ /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.h
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StreetList.h
  /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/main.cpp

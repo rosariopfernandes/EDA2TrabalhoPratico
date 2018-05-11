@@ -1,8 +1,7 @@
 #include <iomanip>
-#include <sstream>
 #include "MatchQueue.h"
 
-MatchQueue::Match::Match(int teamHome, int teamAway, string score, tm* date) {
+MatchQueue::Match::Match(int teamHome, int teamAway, string score, tm date) {
     this->teamHome = teamHome;
     this->teamAway = teamAway;
     this->score = score;

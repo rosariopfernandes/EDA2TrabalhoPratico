@@ -32,6 +32,8 @@ public:
 
     void printList();
 
+    void printList(int firstCity, int lastCity);
+
 private:
     Route* head;
     Route* tail;

@@ -108,6 +108,12 @@
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.cpp">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.h">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.cpp">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>

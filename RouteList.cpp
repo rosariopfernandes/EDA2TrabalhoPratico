@@ -1,5 +1,6 @@
 
 #include "RouteList.h"
+#include "StopoverQueue.h"
 
 RouteList::Route::Route(int idRoute, int firstCity, int lastCity) {
     this->idRoute = idRoute;
@@ -59,4 +60,29 @@ void RouteList::printList() {
         cout << endl;
         route = route->next;
     }
+}
+
+void RouteList::printList(int firstCity, int lastCity) {
+    if(isEmpty())
+        return;
+    Route* route = head;
+    int mostExpensiveId = route->idRoute;
+    double mostExpensivePrice = route->stopoverQueue->getTotalDistance();
+    StopoverQueue *queue;
+    double routePrice;
+    while(route!=NULL)
+    {
+        if(route->firstCity == firstCity && route->lastCity == lastCity)
+        {
+            queue = route->stopoverQueue;
+            routePrice = queue->getTotalDistance();
+            if(routePrice > mostExpensivePrice)
+                mostExpensiveId = route->idRoute;
+            cout << route->idRoute<<". ORIGEM="<<firstCity<<" DESTINO="<<lastCity
+                 << " DISTANCE="<<routePrice << endl;
+        }
+
+        route = route->next;
+    }
+    cout << "A ROTA MAIS CARA É " << mostExpensiveId << endl;
 }

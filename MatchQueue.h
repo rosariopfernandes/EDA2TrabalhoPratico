@@ -11,9 +11,9 @@ public:
         int teamHome;
         int teamAway;
         string score;
-        tm* date;
+        tm date;
         Match* next;
-        Match(int teamHome, int teamAway, string score, tm* date);
+        Match(int teamHome, int teamAway, string score, tm date);
     };
 
     MatchQueue();

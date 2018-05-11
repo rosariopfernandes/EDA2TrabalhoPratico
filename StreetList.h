@@ -17,7 +17,8 @@ public:
         int policeNr;
         Street* next;
         CityList::City* destination;
-        Street(int id, double distance, int holesNr, int thievesNr, int policeNr);
+        Street(CityList::City* destination, double distance, int holesNr,
+               int thievesNr, int policeNr);
     };
 
     StreetList();
@@ -26,7 +27,15 @@ public:
 
     void add(Street* newStreet);
 
+    Street* getStreet(int destination);
+
+    Street* getById(int id);
+
+    void updateStreet(int destination, int thieves, int police);
+
     void printList();
+
+    void printStreet(int source, int destination);
 
 private:
     Street* head;

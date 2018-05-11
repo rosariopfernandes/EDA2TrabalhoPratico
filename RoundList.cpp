@@ -47,9 +47,9 @@ void RoundList::printCalendar() {
             match = queue->dequeue();
             cout << match->teamHome << " VS " << match->teamAway << " ";
             string weekDay[] = {"DOMINGO","Segunda","Terça","Quarta","Quinta","Sexta","SABADO"};
-            tm* date = match->date;
-            cout << weekDay[date->tm_wday] <<" ";
-            cout << date->tm_mday << "/" << date->tm_mon << endl;
+            tm date = match->date;
+            cout << weekDay[date.tm_wday] <<" ";
+            cout << date.tm_mday << "/" << date.tm_mon << endl;
         }
         cout << endl;
         round = round->next;

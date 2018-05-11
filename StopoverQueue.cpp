@@ -32,3 +32,14 @@ StopoverQueue::Stopover *StopoverQueue::dequeue() {
     head = head->next;
     return stopover;
 }
+
+double StopoverQueue::getTotalDistance() {
+    double distance = 0;
+    Stopover* stopover = head;
+    while (stopover != NULL)
+    {
+        distance+= stopover->distance;
+        stopover = stopover->next;
+    }
+    return distance;
+}

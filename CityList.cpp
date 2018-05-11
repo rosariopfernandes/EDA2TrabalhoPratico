@@ -63,7 +63,7 @@ void CityList::printCity(City *city) {
     cout << "Cidade:{ id=" << city->id << ", ";
     cout << "nome=" << city->name << ", ";
     cout << "estradas={}";
-    //city->streetList->printList(); TODO: Find a way to fix this
+    //city->streetList->printList();
     cout << "}";
 }
 
@@ -91,3 +91,47 @@ void CityList::printList() {
     }
 }
 
+CityList::City *CityList::get(int index) {
+    City* city = head;
+    int currentIndex = 0;
+    while(city!=NULL)
+    {
+        if(currentIndex == index)
+            return city;
+        currentIndex++;
+        city = city->next;
+    }
+    return NULL;
+}
+
+int CityList::size() {
+    City* city = head;
+    int size = 0;
+    while(city!=NULL)
+    {
+        size++;
+        city = city->next;
+    }
+    return size;
+}
+
+CityList::City *CityList::pop() {
+    if(isEmpty())
+        return NULL;
+    City* city = head;
+    head = head->next;
+    return city;
+}
+
+void CityList::addHouses(int idCity, int nrHouses) {
+    City *city = getById(idCity);
+    if(city == NULL)
+        cout <<"ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << idCity;
+    else
+    {
+        city->houseList = new HouseList;
+        for(int i=0; i< nrHouses; i++)
+            city->houseList->add(new HouseList::House(i));
+        cout << "SUCESSO! FORAM ADICIONADAS " << nrHouses << " NA CIDADE " << city << endl;
+    }
+}

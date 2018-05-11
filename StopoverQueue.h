@@ -22,6 +22,8 @@ public:
 
     Stopover* dequeue();
 
+    double getTotalDistance();
+
 private:
     Stopover* head;
     Stopover* tail;
