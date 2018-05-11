@@ -12,33 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7edaa5a5-4def-451b-a2fa-94c668ce17b2" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Dijkstra.cpp" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/CityList.cpp" afterPath="$PROJECT_DIR$/CityList.cpp" />
-      <change beforePath="$PROJECT_DIR$/CityList.h" afterPath="$PROJECT_DIR$/CityList.h" />
-      <change beforePath="$PROJECT_DIR$/MatchQueue.cpp" afterPath="$PROJECT_DIR$/MatchQueue.cpp" />
-      <change beforePath="$PROJECT_DIR$/MatchQueue.h" afterPath="$PROJECT_DIR$/MatchQueue.h" />
-      <change beforePath="$PROJECT_DIR$/RoundList.cpp" afterPath="$PROJECT_DIR$/RoundList.cpp" />
-      <change beforePath="$PROJECT_DIR$/RouteList.cpp" afterPath="$PROJECT_DIR$/RouteList.cpp" />
-      <change beforePath="$PROJECT_DIR$/RouteList.h" afterPath="$PROJECT_DIR$/RouteList.h" />
-      <change beforePath="$PROJECT_DIR$/StopoverQueue.cpp" afterPath="$PROJECT_DIR$/StopoverQueue.cpp" />
-      <change beforePath="$PROJECT_DIR$/StopoverQueue.h" afterPath="$PROJECT_DIR$/StopoverQueue.h" />
-      <change beforePath="$PROJECT_DIR$/StreetList.cpp" afterPath="$PROJECT_DIR$/StreetList.cpp" />
-      <change beforePath="$PROJECT_DIR$/StreetList.h" afterPath="$PROJECT_DIR$/StreetList.h" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/CXX.includecache" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/DependInfo.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/build.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/cmake_clean.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/depend.internal" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/depend.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/link.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/progress.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/EDA2TrabalhoPratico.dir/progress.make" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico" afterPath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico.cbp" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
       <change beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -55,11 +29,10 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="241" column="42" lean-forward="true" selection-start-line="241" selection-start-column="42" selection-end-line="241" selection-end-column="42" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#9481#11034#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -69,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/MatchQueue.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-14">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+              <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -296,7 +269,7 @@
       <workItem from="1525441271577" duration="1235000" />
       <workItem from="1525775143770" duration="3026000" />
       <workItem from="1525907778038" duration="1295000" />
-      <workItem from="1525961801342" duration="30119000" />
+      <workItem from="1525961801342" duration="31575000" />
     </task>
     <task id="LOCAL-00001" summary="1. MAPA_DO_JOGO&#10;Created CityList and StreetList. That's the first graph">
       <created>1525277388474</created>
@@ -340,11 +313,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525987042402</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="6. CALENDARIO_DE_JOGOS&#10;Created the algorithm to schedule matches for weekends only">
+      <created>1526003426818</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1526003426818</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53880000" />
+    <option name="totallyTimeSpent" value="55336000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -406,13 +386,18 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="1. MAPA_DO_JOGO&#10;Created CityList and StreetList. That's the first graph" />
     <MESSAGE value="StreetList's constructor was missing a tail initializer" />
     <MESSAGE value="3. ADICIONAR_CASAS&#10;Created HouseList and BridgeList, forming a graph.&#10;CityList now contains a HouseList. Each City now has a list of houses. The houses are connected by bridges." />
     <MESSAGE value="4. ROTAS_AEREAS&#10;Created a structure for Routes and a structure for stopovers" />
     <MESSAGE value="6.1 CALENDARIO_DE_JOGOS&#10;Created a structure for Football matches" />
     <MESSAGE value="6.2 CALENDARIO_DE_JOGOS&#10;Created a structure for Rounds of football matches" />
-    <option name="LAST_COMMIT_MESSAGE" value="6.2 CALENDARIO_DE_JOGOS&#10;Created a structure for Rounds of football matches" />
+    <MESSAGE value="6 CALENDARIO_DE_JOGOS&#10;Created the algorithm to schedule matches for weekends only" />
+    <MESSAGE value="6. CALENDARIO_DE_JOGOS&#10;Created the algorithm to schedule matches for weekends only" />
+    <option name="LAST_COMMIT_MESSAGE" value="6. CALENDARIO_DE_JOGOS&#10;Created the algorithm to schedule matches for weekends only" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -435,7 +420,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#9481#11034#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -480,7 +464,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#9481#11034#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -525,7 +508,6 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#9481#11034#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -570,7 +552,6 @@
           <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#9481#11034#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -802,7 +783,7 @@
     <entry file="file://$PROJECT_DIR$/MatchQueue.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -817,11 +798,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="216">
+          <caret line="241" column="42" lean-forward="true" selection-start-line="241" selection-start-column="42" selection-end-line="241" selection-end-column="42" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#9481#11034#0" expanded="false" />
           </folding>
         </state>
       </provider>

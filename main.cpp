@@ -20,10 +20,6 @@ using namespace std;
  *    E se o percurso terminar na cidade do assassinato?
  */
 
-//Variables
-CityList* cityList = new CityList;
-
-//Methods
 void welcomePlayer(string name)
 {
     cout << "Olá " << name <<  "!" << endl;
@@ -48,14 +44,12 @@ tm* getNextSaturday(tm *gmnow)
 
 void generateMatchCalendar(CityList *cityList)
 {
-
     RoundList* roundList = new RoundList(cityList->size());
     MatchQueue::Match* match;
     int currentRound =0;
 
     int size = cityList->size();
     bool foundExtra;
-
 
     time_t now = time(0);
     tm* gmnow = gmtime(&now);
@@ -105,7 +99,7 @@ void generateMatchCalendar(CityList *cityList)
     roundList->printCalendar();
 }
 
-void startListening()
+void listenForInput(CityList *cityList)
 {
     string command = "";
     cin >> command;
@@ -264,92 +258,19 @@ void startListening()
     }else if(command == "LADRAO_EVITAR_POLICIAS") //Não necessário
     {
 
-    }else if(command == "VIAJAR")
+    }else
     {
-
-    }else if(command == "VIAJAR")
-    {
-
-    }else if(command == "VIAJAR")
-    {
-
+        cout << "ERRO! COMANDO INVÁLIDO!" << endl;
     }
-    startListening();
-}
-
-
-void foo(int x)
-{
-    x = 4;
+    listenForInput(cityList);
 }
 
 int main(){
+    CityList* cityList = new CityList;
 
-    //Métodos
     welcomePlayer("Rosário Fernandes");
 
-    startListening();
+    listenForInput(cityList);
 
     return 0;
 }
-
-/*int main() {
-    CityList *cityList = new CityList;
-    CityList::City* city = new CityList::City(1, "Hello");
-    city->streetList = new StreetList;
-
-    StreetList::Street* street = new StreetList::Street(1, 200, 13, 2, 2);
-    street->next = NULL;
-    street->destination = new CityList::City(2,"World");
-
-    city->streetList->add(street);
-    cityList->add(city);
-    cityList->printList();
-    //cityList->getById(1)->streetList->printList();
-
-    //Houses and Bridges
-    //cout << endl;
-    city->houseList = new HouseList;
-    HouseList::House* house = new HouseList::House(10);
-    house->bridgeList = new BridgeList;
-
-    BridgeList::Bridge* bridge = new BridgeList::Bridge(200);
-    bridge->next = NULL;
-    bridge->destination = new HouseList::House(20);
-
-
-    house->bridgeList->add(bridge);
-    city->houseList->add(house);
-    city->houseList->printList();
-    //city->houseList->getById(10)->bridgeList->printList();
-
-    city = new CityList::City(2, "World");
-    cityList->add(city);
-
-    city = new CityList::City(3, "Test");
-    cityList->add(city);
-
-    city = new CityList::City(4, "Testing 2");
-    cityList->add(city);
-
-    /*city = new CityList::City(5, "Testing 2");
-    cityList->add(city);
-
-    city = new CityList::City(6, "Testing 2");
-    cityList->add(city);
-
-    city = new CityList::City(7, "Testing 2");
-    cityList->add(city);
-
-    city = new CityList::City(8, "Testing 2");
-    cityList->add(city);
-
-
-
-    /*welcomePlayer("Rosário");
-    startListening();
-
-    //generateMatchCalendar(cityList);
-
-    return 0;*/
-//}
