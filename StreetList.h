@@ -37,7 +37,7 @@ public:
 
     void printStreet(int source, int destination);
 
-private:
+//private:
     Street* head;
     Street* tail;
     void printStreet(Street* street);

@@ -41,21 +41,25 @@ public:
 
     void addHouses(int idCity, int nrHouses);
 
+    void executeDijkstra(int source);
+
 private:
     City* head;
     City* tail;
     void printCity(City *city);
-    struct Dijkstra_Single_Source_Shortest_Paths
+    struct DijkstraPath
     {
         int city1, city2;
         double distance;
         bool visited;
     };
-    vector<Dijkstra_Single_Source_Shortest_Paths>dijkstra_shortest_path_tree;
-    void initialize_dijkstra_single_source_shortest_paths(int source_vertex);
-    void dijkstra_single_source_shortest_paths(int source_id,int destination_id);
-    int next_visit();
-    void view_dijkstra_single_source_shortest_paths();
+    vector<DijkstraPath>dijkstraPathTree;
+
+    int graphSize;
+    void initTree(int source);
+    int getNextVisit();
+    void dijkstraShortestPaths();
+    void viewShortestPaths();
 };
 
 

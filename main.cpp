@@ -11,17 +11,10 @@
 using namespace std;
 
 /*
- * 3. Na hora de escrever detalhes dos gastos do avião, é preciso indicar a paragem onde ele abasteceu? Sim.
- * 5. Se o documento do policia tiver o número 5. E no meio dessas 5 cidades do percurso ele volta para
+ *    Se o documento do policia tiver o número 5. E no meio dessas 5 cidades do percurso ele volta para
  *    a cidade do assassinato, essa cidade conta? Sim, conta.
  *    E se o percurso terminar na cidade do assassinato? Não tem problema.
  */
-
-void welcomePlayer(string name)
-{
-    cout << "Olá " << name <<  "!" << endl;
-    cout << "Bem-vindo ao EDA2JOGO :)" << endl;
-}
 
 tm* addDays( struct tm* date, int days )
 {
@@ -98,7 +91,8 @@ void generateMatchCalendar(CityList *cityList)
 
 void listenForInput(CityList *cityList, RouteList *routeList)
 {
-    string command = "";
+    cout << "Introduza um comando:";
+    string command;
     cin >> command;
     if(command == "SAIR")
     {
@@ -147,6 +141,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             if(city->streetList == NULL)
                 city->streetList = new StreetList;
             city->streetList->add(street);
+            //TODO: Test this
             /*StreetList::Street *street2 = new StreetList::Street(city, distance, 0,0,0);
             destination->streetList->add(street2);*/
             cout << "SUCESSO! ESTRADA ADICIONADA {ORIGEM:"<<city1 <<
@@ -377,6 +372,27 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             }
         }
 
+    }else if(command == "ASSASSINATO_NO_MAPA_MUNDO")
+    {
+        //TODO: Exercício 9
+        int sourceId, destinationId;
+        cout << "CIDADE_ASSASSINATO:" ;
+        cin >> sourceId;
+
+        CityList::City *city1 = cityList->get(sourceId);
+        if(city1 == NULL)
+            cout << "NÃO EXISTE CIDADE COM ID="<<sourceId << endl;
+        else{
+            cout << "CIDADE_DOCUMENTO:";
+            cin >> destinationId;
+            CityList::City *city2 = cityList->get(sourceId);
+            if(city2 == NULL)
+                cout << "NÃO EXISTE CIDADE COM ID=" << destinationId << endl;
+            else{
+                cityList->executeDijkstra(sourceId);
+            }
+        }
+
     }else
     {
         cout << "ERRO! COMANDO INVÁLIDO!" << endl;
@@ -388,7 +404,9 @@ int main(){
     CityList* cityList = new CityList;
     RouteList* routeList = new RouteList;
 
-    welcomePlayer("Rosário Fernandes");
+    string name = "Rosário Fernandes";
+    cout << "OLÁ " << name <<  "!" << endl;
+    cout << "BEM-VINDO AO EDA2JOGO :)" << endl;
 
     listenForInput(cityList, routeList);
 

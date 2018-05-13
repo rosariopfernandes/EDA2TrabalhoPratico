@@ -21,6 +21,8 @@ HouseList.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.cpp
 CityList.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h
+StreetList.h
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StreetList.h
 
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/CityList.h
 string
@@ -67,12 +69,12 @@ MatchQueue.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.cpp
 RouteList.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.h
-StopoverQueue.h
-/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.h
 
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.h
 iostream
 -
+StopoverQueue.h
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.h
 
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/StopoverQueue.cpp
 StopoverQueue.h
@@ -105,6 +107,12 @@ MatchQueue.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/MatchQueue.h
 RoundList.h
 /home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RoundList.h
+RouteList.h
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/RouteList.h
+BridgeList.h
+/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BridgeList.h
 ctime
+-
+fstream
 -
 
