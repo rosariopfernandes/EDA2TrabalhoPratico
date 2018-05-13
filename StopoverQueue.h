@@ -10,8 +10,8 @@ public:
     struct Stopover{
         int idCity;
         double distance;
-        Stopover* next;
         Stopover(int idCity, double distance);
+        Stopover* next;
     };
 
     StopoverQueue();

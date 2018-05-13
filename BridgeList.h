@@ -13,7 +13,7 @@ public:
         double distance;
         HouseList::House* destination;
         Bridge* next;
-        Bridge(double distance);
+        Bridge(double distance, HouseList::House* destination);
     };
 
     BridgeList();

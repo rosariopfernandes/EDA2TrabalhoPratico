@@ -2,10 +2,9 @@
 #define EDA2TRABALHOPRATICO_ROUTELIST_H
 
 #include <iostream>
+#include "StopoverQueue.h"
 
 using namespace std;
-
-class StopoverQueue;
 
 class RouteList {
 public:
@@ -26,13 +25,17 @@ public:
 
     Route* getById(int idRoute);
 
+    Route* getRoute(int firstCity, int lastCity);
+
+    Route* getRoute(Route* otherRoute);
+
     void remove(int idRoute);
 
     void printRoute(int idRoute);
 
     void printList();
 
-    void printList(int firstCity, int lastCity);
+    int printListMostExp(int firstCity, int lastCity);
 
 private:
     Route* head;

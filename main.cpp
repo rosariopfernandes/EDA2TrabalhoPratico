@@ -3,21 +3,18 @@
 #include "StreetList.h"
 #include "MatchQueue.h"
 #include "RoundList.h"
+#include "RouteList.h"
+#include "BridgeList.h"
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
 /*
- * TODO: Perguntar ao docente
- * 1. Para adicionar pontes entre cidades, o jogador tem de dizer em que cidade quer adicionar a ponte?
- *    Ou devo mostrar uma lista de cidades para ele escolher?
- * 2. Na adição de rota, pede-se ao jogador para introduzir a distancia de cada paragem.
- *    E se a distancia não estiver correcta?
- * 3. Na hora de escrever detalhes dos gastos do avião, é preciso indicar a paragem onde ele abasteceu?
- * 4. Podemos usar o algoritmo de Dijkstra que o docente deu?
+ * 3. Na hora de escrever detalhes dos gastos do avião, é preciso indicar a paragem onde ele abasteceu? Sim.
  * 5. Se o documento do policia tiver o número 5. E no meio dessas 5 cidades do percurso ele volta para
- *    a cidade do assassinato, essa cidade conta?
- *    E se o percurso terminar na cidade do assassinato?
+ *    a cidade do assassinato, essa cidade conta? Sim, conta.
+ *    E se o percurso terminar na cidade do assassinato? Não tem problema.
  */
 
 void welcomePlayer(string name)
@@ -99,12 +96,13 @@ void generateMatchCalendar(CityList *cityList)
     roundList->printCalendar();
 }
 
-void listenForInput(CityList *cityList)
+void listenForInput(CityList *cityList, RouteList *routeList)
 {
     string command = "";
     cin >> command;
     if(command == "SAIR")
     {
+        cout << "GAME OVER :(" << endl;
         return;
     } else if( command == "CRIAR_MAPA_DO_JOGO_CIDADE")
     {
@@ -149,6 +147,8 @@ void listenForInput(CityList *cityList)
             if(city->streetList == NULL)
                 city->streetList = new StreetList;
             city->streetList->add(street);
+            /*StreetList::Street *street2 = new StreetList::Street(city, distance, 0,0,0);
+            destination->streetList->add(street2);*/
             cout << "SUCESSO! ESTRADA ADICIONADA {ORIGEM:"<<city1 <<
                  "; DESTINO:"<<city2 << "; DISTANCIA=" <<distance<<"KM}!" << endl;
         }
@@ -198,7 +198,7 @@ void listenForInput(CityList *cityList)
         }
     }else if(command == "ACTUALIZAR_MAPA_DO_JOGO_INFO_CASAS")
     {
-        cout << "ID_CIDADE_ORIGEM:";
+        cout << "ID_CIDADE:";
         int city;
         cin >> city;
         cout << "NUMERO_DE_CASAS:";
@@ -206,9 +206,12 @@ void listenForInput(CityList *cityList)
         cin >> housesNr;
         if(housesNr < 0)
             cout << "ERRO! UMA CIDADE NÃO PODE CONTER UM NÚMERO NEGATIVO DE CASAS" << endl;
-        else
+        else if(cityList->isEmpty())
+        {
+            cout << "ERRO! ADICIONE CIDADES ANTES DE ADICIONAR CASAS!" << endl;
+        }else
             cityList->addHouses(city, housesNr);
-    }else if(command == "CRIAR_CIDADE_PONTE") //CRIAR_CIDADE_PONTE CASA_ORIGEM CASA_DESTINO DISTANCIA
+    }else if(command == "CRIAR_CIDADE_PONTE")
     {
         cout << "ID_CASA_ORIGEM:";
         int house1;
@@ -221,56 +224,173 @@ void listenForInput(CityList *cityList)
         double distance;
         cin >> distance;
 
-        //TODO: mostrar lista de cidades para utilizador escolher em que cidade quer adicionar casa
+        if(house1 == house2){
+            cout << "ERRO! NÃO É POSSÍVEL ADICIONAR UMA PONTE ENTRE UMA CASA E ELA MESMA!"<<endl;
+        }
+        else if(cityList->isEmpty()){
+            cout << "ERRO! ADICIONE CIDADES ANTES DE ADICIONAR PONTES!" << endl;
+        }else {
+            cityList->printList();
+            int cityId;
+            cout << "ID_CIDADE:";
+            cin >> cityId;
+            CityList::City *city = cityList->getById(cityId);
+            if(city==NULL)
+            {
+                cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID="<<cityId << endl;
+            }
+            else
+            {
+                HouseList::House *firstHouse = city->houseList->getById(house1);
+                if(firstHouse == NULL)
+                    cout << "ERRO! NÃO EXISTE NENHUMA CASA COM ID="<<house1 << endl;
+                else{
+                    HouseList::House *secondHouse = city->houseList->getById(house2);
+                    if(secondHouse == NULL)
+                    {
+                        cout << "ERRO! NÃO EXISTE NENHUMA CASA COM ID="<<house1 << endl;
+                    } else{
+                        BridgeList::Bridge *bridge =
+                                new BridgeList::Bridge(distance, secondHouse);
+                        if(firstHouse->bridgeList == NULL)
+                            firstHouse->bridgeList = new BridgeList;
+                        firstHouse->bridgeList->add(bridge);
+                        cout << "SUCESSO! PONTE ADICIONADA {ORIGEM:"<<house1 <<
+                             "; DESTINO:"<<house2 << "; DISTANCIA=" <<distance<<"}!" << endl;
+                    }
+                }
 
-        /*CityList::City* city = cityList->getById(house1);
-        CityList::City* destination = cityList->getById(house2);
-        StreetList::Street *street = new StreetList::Street(destination, distance, 0,0,0);
-        if(house1 == house2)
-            cout << "ERRO! O MAPA_DO_JOGO NÃO PODE CONTER ESTRADAS INTERNAS NUMA"
-                    " CIDADE! REVEJA O CONCEITO DE PONTES E CASAS NUMA CIDADE SE"
-                    " QUER EXPANDIR UMA CIDADE!" << endl;
-        else if(city == NULL)
-            cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << house1 << endl;
-        else if(destination == NULL)
-            cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << house2 << endl;
-        else if(cityList->size() %2 != 0)
-            cout << "ERRO! O MAPA_DO_JOGO CONTEM UM NUMERO IMPAR DE CIDADES!" << endl;
-        else
-        {
-            city->streetList = new StreetList;
-            city->streetList->add(street);
-            cout << "SUCESSO! ESTRADA ADICIONADA {ORIGEM:"<<house1 <<
-                 "; DESTINO:"<<house2 << "; DISTANCIA=" <<distance<<"KM}!" << endl;
-        }*/
+            }
+        }
     }else if(command == "ADICIONAR_ROTA")
     {
+        cout << "ID_CIDADE_ORIGEM:";
+        int city1;
+        cin >> city1;
+        cout << "ID_CIDADE_DESTINO:";
+        int city2;
+        cin >> city2;
+
+        CityList::City *origin = cityList->getById(city1);
+        if(city1 == city2)
+        {
+            cout << "ERRO! NÃO É POSSÍVEL CRIAR ROTA DE UMA CIDADE PARA ELA MESMA." << endl;
+        } else if(origin == NULL)
+        {
+            cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << city1 << endl;
+        } else{
+            CityList::City *destination = cityList->getById(city2);
+            if(destination == NULL)
+            {
+                cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << city2 << endl;
+            } else{
+                //TODO: Mostrar todas cidades que estão entre city1 e city2
+                // E pedir para escolher em que cidades quer fazer paragem.
+                // Quando ele termina de escolher, verificar se a rota já existe
+                // Se não existe, adicionar.
+                int stopoverId;
+                CityList::City *stopCity;
+                do{
+                    cout <<"(Introduza -1 quando terminar) PARAGEM_ID:";
+                    cin >> stopoverId;
+                    if(stopoverId == city1 || stopoverId == city2)
+                    {
+                        cout << "PARAGEM INVÁLIDA" << endl;
+                    }
+                }while (stopoverId != -1);
+            }
+        }
 
     }else if(command == "GERAR_CALENDARIO_DE_FUTEBOL")
     {
         generateMatchCalendar(cityList);
     }else if(command == "VIAJAR")
     {
+        cout << "ID_CIDADE_EM_QUE_O_JOGADOR_SE_ENCONTRA_ACTUALMENTE:";
+        int city1;
+        cin >> city1;
+        cout << "ID_CIDADE_QUE_O_JOGADOR_DESEJAR_VISITAR:";
+        int city2;
+        cin >> city2;
 
-    }else if(command == "POLICIA_ENCONTRAR_POLICIAS") //Não necessário
-    {
+        CityList::City *source = cityList->getById(city1);
+        CityList::City *destination = cityList->getById(city2);
+        if(source == NULL)
+        {
+            cout << "ERRO! NÃO EXISTE CIDADE COM ID="<< city1 << endl;
+        } else if(destination == NULL)
+        {
+            cout << "ERRO! NÃO EXISTE CIDADE COM ID="<< city2 << endl;
+        } else{
+            if(routeList->isEmpty() || city1 == city2)
+            {
+                cout << "ERRO! NÃO EXISTE ROTA DE "<<city1 <<" PARA " << city2 << endl;
+            }
+            else
+            {
+                int mostExp = routeList->printListMostExp(city1, city2);
 
-    }else if(command == "LADRAO_EVITAR_POLICIAS") //Não necessário
-    {
+                if(mostExp != -1) {
+                    cout << "A ROTA MAIS CARA É " << mostExp << endl;
+                    cout << "ID_ROTA:";
+                    int routeId;
+                    cin >> routeId;
+
+                    RouteList::Route* route = routeList->getById(routeId);
+                    if(route != NULL)
+                    {
+                        StopoverQueue::Stopover *stopover;
+                        int lastCity = city1;
+                        int totalRefuelCount = 0;
+                        int maintenanceCount = 0;
+                        cout << "ORIGEM_ROTA="<<city1 <<" DESTINO_ROTA="<<city2<<endl;
+                        while(!route->stopoverQueue->isEmpty())
+                        {
+                            stopover = route->stopoverQueue->dequeue();
+
+                            cout << "ORIGEM:" << lastCity << " DESTINO:" << stopover->idCity;
+                            double distance = stopover->distance;
+                            cout << "DISTANCIA:"<< distance;
+
+                            int refuelCount = (int)distance / 150;
+                            int refuelCost = refuelCount*50000;
+                            cout << " ABASTECIMENTO: " << refuelCost;
+                            totalRefuelCount+=refuelCount;
+
+                            maintenanceCount = totalRefuelCount/3;
+                            int maintenanceCost = maintenanceCount*30000;
+                            cout << " MANUTENCAO: " << maintenanceCost << endl;
+
+                            //TODO: Test the file write
+                            ofstream os("UltimaRota.txt");
+                            os << "ORIGEM:" << lastCity << " DESTINO:" << stopover->idCity
+                                << "DISTANCIA:"<< distance << " ABASTECIMENTO: " << refuelCost
+                                << " MANUTENCAO: " << maintenanceCost << "\n";
+                            os.close();
+                        }
+                    } else{
+                        cout << "ERRO! NÃO EXISTE ROTA DE ID=" << routeId << endl;
+                    }
+                }
+                else
+                    cout << "ERRO! NÃO EXISTE ROTA DE "<<city1 <<" PARA "<< city2 << endl;
+            }
+        }
 
     }else
     {
         cout << "ERRO! COMANDO INVÁLIDO!" << endl;
     }
-    listenForInput(cityList);
+    listenForInput(cityList, routeList);
 }
 
 int main(){
     CityList* cityList = new CityList;
+    RouteList* routeList = new RouteList;
 
     welcomePlayer("Rosário Fernandes");
 
-    listenForInput(cityList);
+    listenForInput(cityList, routeList);
 
     return 0;
 }

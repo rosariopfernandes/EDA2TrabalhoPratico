@@ -61,9 +61,9 @@ CityList::City* CityList::getById(int id) {
  */
 void CityList::printCity(City *city) {
     cout << "Cidade:{ id=" << city->id << ", ";
-    cout << "nome=" << city->name << ", ";
-    cout << "estradas={}";
-    //city->streetList->printList();
+    cout << "nome=" << city->name /*<< ", "*/;
+    //cout << "estradas={}";
+    //city->streetList->printListMostExp();
     cout << "}";
 }
 
@@ -90,6 +90,8 @@ void CityList::printList() {
         city = city->next;
     }
 }
+
+
 
 CityList::City *CityList::get(int index) {
     City* city = head;
@@ -132,6 +134,6 @@ void CityList::addHouses(int idCity, int nrHouses) {
         city->houseList = new HouseList;
         for(int i=0; i< nrHouses; i++)
             city->houseList->add(new HouseList::House(i));
-        cout << "SUCESSO! FORAM ADICIONADAS " << nrHouses << " NA CIDADE " << city << endl;
+        cout << "SUCESSO! FORAM ADICIONADAS " << nrHouses << " NA CIDADE " << idCity << endl;
     }
 }

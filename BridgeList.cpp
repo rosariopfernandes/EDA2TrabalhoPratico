@@ -1,7 +1,8 @@
 #include "BridgeList.h"
 
-BridgeList::Bridge::Bridge(double distance) {
+BridgeList::Bridge::Bridge(double distance, HouseList::House *destination) {
     this->distance = distance;
+    this->destination = destination;
 }
 
 BridgeList::BridgeList() {

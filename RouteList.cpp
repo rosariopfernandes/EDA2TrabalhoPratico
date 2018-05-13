@@ -1,6 +1,5 @@
 
 #include "RouteList.h"
-#include "StopoverQueue.h"
 
 RouteList::Route::Route(int idRoute, int firstCity, int lastCity) {
     this->idRoute = idRoute;
@@ -62,11 +61,9 @@ void RouteList::printList() {
     }
 }
 
-void RouteList::printList(int firstCity, int lastCity) {
-    if(isEmpty())
-        return;
+int RouteList::printListMostExp(int firstCity, int lastCity) {
     Route* route = head;
-    int mostExpensiveId = route->idRoute;
+    int mostExpensiveId = -1;
     double mostExpensivePrice = route->stopoverQueue->getTotalDistance();
     StopoverQueue *queue;
     double routePrice;
@@ -81,8 +78,38 @@ void RouteList::printList(int firstCity, int lastCity) {
             cout << route->idRoute<<". ORIGEM="<<firstCity<<" DESTINO="<<lastCity
                  << " DISTANCE="<<routePrice << endl;
         }
-
         route = route->next;
     }
-    cout << "A ROTA MAIS CARA É " << mostExpensiveId << endl;
+    return mostExpensiveId;
+}
+
+RouteList::Route *RouteList::getRoute(int firstCity, int lastCity) {
+    Route* route = head;
+    while(route!=NULL)
+    {
+        if(route->firstCity == firstCity && route->lastCity == lastCity)
+            return route;
+        route = route->next;
+    }
+    return NULL;
+}
+
+RouteList::Route *RouteList::getRoute(RouteList::Route *otherRoute) {
+    Route* route = head;
+    StopoverQueue *queue;
+    StopoverQueue *otherQueue;
+    StopoverQueue::Stopover *stopover;
+    while(route != NULL)
+    {
+        queue = head->stopoverQueue;
+        otherQueue = otherRoute->stopoverQueue;
+        while(!queue->isEmpty() || !otherQueue->isEmpty())
+        {
+            stopover = queue->dequeue();
+            if(stopover != otherQueue->dequeue())
+                return NULL;
+        }
+        route = route->next;
+    }
+    return otherRoute;
 }
