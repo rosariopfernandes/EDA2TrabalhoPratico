@@ -48,8 +48,8 @@ void RoundList::printCalendar() {
             cout << match->teamHome << " VS " << match->teamAway << " ";
             string weekDay[] = {"DOMINGO","Segunda","Terça","Quarta","Quinta","Sexta","SABADO"};
             tm date = match->date;
-            cout << weekDay[date.tm_wday] <<" ";
-            cout << date.tm_mday << "/" << date.tm_mon << endl;
+            cout <</* weekDay[date.tm_wday] <<" ";
+            cout << date.tm_mday << "/" << date.tm_mon <<*/ endl;
         }
         cout << endl;
         round = round->next;
@@ -59,7 +59,6 @@ void RoundList::printCalendar() {
 RoundList::RoundList(int size) {
     this->head = NULL;
     this->tail = NULL;
-    for(int i=1; i< (size*2-1);i++)
+    for(int i=1; i< size*2-1;i++)
         add(i);
 }
-

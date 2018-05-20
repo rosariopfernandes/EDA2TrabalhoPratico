@@ -43,8 +43,9 @@ public:
 
     void executeDijkstra(int source);
 
-private:
     City* head;
+
+private:
     City* tail;
     void printCity(City *city);
     struct DijkstraPath

@@ -32,61 +32,60 @@ tm* getNextSaturday(tm *gmnow)
     return gmnow;
 }
 
-void generateMatchCalendar(CityList *cityList)
+struct MatchDone{
+    int team1;
+    int team2;
+    MatchDone* next;
+    int round;
+} *headMatch, *tailMatch;
+
+bool havePlayed(int team1, int team2, int round)
 {
-    RoundList* roundList = new RoundList(cityList->size());
-    MatchQueue::Match* match;
-    int currentRound =0;
-
-    int size = cityList->size();
-    bool foundExtra;
-
-    time_t now = time(0);
-    tm* gmnow = gmtime(&now);
-    tm* lastSaturday = getNextSaturday(gmnow);
-
-    for(int i=0; i<size;i++)
+    for(MatchDone* match = headMatch; match != NULL; match = match->next)
     {
-        for(int j=i+1; j < size; j++)
+        if((team1 == match->team1 && team2 == match->team2) ||
+            (team1 == match->team2 && team2 == match->team1))
         {
-            currentRound++;
-            if(currentRound <= size-1)
-                match = new MatchQueue::Match(cityList->get(i)->id,
-                                              cityList->get(j)->id,
-                                              "0-0",*lastSaturday);
-            else
-                match = new MatchQueue::Match(cityList->get(j)->id,
-                                              cityList->get(i)->id,
-                                              "0-0",*lastSaturday);
-
-            lastSaturday = addDays(lastSaturday, 1);
-
-            roundList->addMatch(currentRound, match);
-            foundExtra = false;
-
-            for(int k=0; k < size && !foundExtra; k++)
-            {
-                if(k == j || k== i)
-                    continue;
-                for(int l = 0; l < size; l++)
-                {
-                    if (l == k || l == j || l == i)
-                        continue;
-                    if(currentRound <= size-1)
-                        match = new MatchQueue::Match(cityList->get(k)->id,
-                                                      cityList->get(l)->id, "0-0",*lastSaturday);
-                    else
-                        match = new MatchQueue::Match(cityList->get(l)->id,
-                                                      cityList->get(k)->id, "0-0",*lastSaturday);
-                    roundList->addMatch(currentRound, match);
-                    foundExtra = true;
-                    break;
-                }
-                lastSaturday = addDays(lastSaturday, 6);
-            }
+            cout << team1 << "já jogou com " << team2 << "no round "<< round << endl;
+            return true;
         }
     }
-    roundList->printCalendar();
+    return false;
+}
+
+void addMatch(int team1, int team2, int round){
+    MatchDone *match = new MatchDone;
+    match->team1 = team1;
+    match->team2 = team2;
+    match->round = round;
+    match->next = NULL;
+    if(headMatch == NULL)
+        headMatch = tailMatch = match;
+    else{
+        tailMatch->next = match;
+        tailMatch = match;
+    }
+}
+
+int whoDidTheyPlayAgainst(int team, RoundList::Round *round)
+{
+    MatchQueue::Match *match = round->matchQueue->head;
+    while(match!=NULL)
+    {
+        if(team == match->teamHome)
+            return match->teamAway;
+        if(team == match->teamAway)
+            return match->teamHome;
+        match = match->next;
+    }
+    return -1;
+}
+
+int indexOf(int n, vector <int> v){
+    for(int i=0; i< v.size();i++)
+        if(v[i] == n)
+            return i;
+    return -1;
 }
 
 void listenForInput(CityList *cityList, RouteList *routeList)
@@ -303,165 +302,76 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         if(size %2 != 0)
             cout << "ERRO! O MAPA_DO_JOGO CONTEM UM NUMERO IMPAR DE CIDADES!" << endl;
         else{
-            int half = size/2;
             vector<int> cityIds;
+            vector<bool> hasPlayedRound;
             CityList::City *city = cityList->head;
             while(city!=NULL)
             {
                 cityIds.push_back(city->id);
+                hasPlayedRound.push_back(false);
                 city = city->next;
             }
-            /*vector<int> blue, red;
-            CityList::City *city = cityList->head;
-            int currentIndex = 0;
-            while(city!=NULL) //Colorir metade do grafo
-            CityList::City *city = cityList->head;
-            {
-                //if(currentIndex<half)
-                if(currentIndex%2==0)
-                    blue.push_back(city->id);
-                else
-                    red.push_back(city->id);
-                currentIndex++;
-                city = city->next;
-            }*/
+            int half = size/2;
 
             time_t now = time(0);
             tm* gmnow = gmtime(&now);
             tm* lastSaturday = getNextSaturday(gmnow);
 
             int roundSize =cityList->size()-1;
+            int currentMinus = size;
+            cityIds[roundSize] = currentMinus;
             RoundList* roundList = new RoundList(cityList->size());
-            MatchQueue::Match* match;
-            int unmutablePosition=0;
+            MatchQueue::Match* match2;
             RoundList::Round *currentRound = roundList->head;
-            int mutablePos=1, total;
-            /*
-             * int previousIndex; done
-        int aux; done
-        for(int i=0;i<array.length-1;i++) done
-        {
-            for(int l=1;l<array.length;l+=2)//This is where I push matches
-                System.out.println(array[l-1]+ ","+array[l]); done
-            //Swap left
-            for(int index=1;index<array.length-1;index++)
-            {
-                previousIndex = index-1;
-                if(previousIndex==0)
-                    previousIndex = array.length-1;
-                aux = array[previousIndex];
-                array[previousIndex] = array[index];
-                array[index] = aux;
+
+            int j = roundSize;
+            for(int i =0; i< half;i++) {
+                match2 = new MatchQueue::Match(cityIds[i], cityIds[j],
+                                                *lastSaturday);
+                currentRound->matchQueue->enqueue(match2);
+                j--;
             }
 
-        }
-             */
-            int previousIndex;
-            int aux;
-            for(int i= 0;i<roundSize;i++)
+            RoundList::Round *previousRound = currentRound;
+            currentRound = currentRound->next;
+
+            /*for(MatchQueue::Match *match = previousRound->matchQueue->head;
+                match!=NULL; match = match->next)*/
+
+
+            for(int i = 0; i<size; i++)
             {
-                for(int j=0; j<roundSize;j+=2)
-                {
-                    match = new MatchQueue::Match(cityIds[j],
-                                                  cityIds[j+1], "0-0",*lastSaturday);
-                    currentRound->matchQueue->enqueue(match);
-                }
-                //Swap left
-                for(int index=1;index<roundSize;index++)
-                {
-                    previousIndex = index-1;
-                    if(previousIndex == 0)
-                        previousIndex = roundSize;
-                    aux = cityIds[previousIndex];
-                    cityIds[previousIndex] = cityIds[index];
-                    cityIds[index] = aux;
-                }
-                currentRound = currentRound->next;
+                cout << "Qual é o elemento? " << cityIds[i] << endl;
+                if(cityIds[i] == currentMinus)
+                    continue;
+                int indexHome = i;
+                cout << "Já jogou neste round? ";
+                if(!hasPlayedRound[indexHome]){ //Ja jogou neste round?
+                    cout << "Não" << endl;
+
+                    //j = match->teamAway; //Jogou com quem?
+                    j = whoDidTheyPlayAgainst(cityIds[i],previousRound); //Jogou com quem?
+                    cout << "Jogou com quem? " << j << endl;
+                    if(j == currentMinus) //Jogou com ele próprio?
+                        j = cityIds[i];
+                    j++; //Agora joga com a team a seguir.
+                    cout << "+1 = " << j << endl;
+                    if(j>size) //Circular
+                        j = 1;
+                    if(cityIds[i] == j) //if(4==4)
+                        j=currentMinus; //adversario = -1
+
+                    match2 = new MatchQueue::Match(cityIds[i], j,
+                                                  *lastSaturday);
+                    currentRound->matchQueue->enqueue(match2);
+                    hasPlayedRound[indexHome] = true;
+                    hasPlayedRound[indexOf(j,cityIds)] = true;
+
+                } else
+                    cout << "Sim" << endl;
             }
-            /*while(mutablePos<roundSize && currentRound != NULL)
-            {
-                for(int i=0;i<half;i++)
-                {
-                    total=mutablePos+i;
-                    if(total>=half)
-                        total -= (half);
-                    unmutablePosition+=i;
-                    match = new MatchQueue::Match(cityIds[unmutablePosition],
-                                                  cityIds[total], "0-0",*lastSaturday);
-                    currentRound->matchQueue->enqueue(match);
-                }
-                mutablePos++;
-                currentRound = currentRound->next;
-            }*/
+
             roundList->printCalendar();
-            //int j =0;
-            //First round
-            //int currentRound = 0;
-            //int j;
-
-            //Blue vs. Red
-            /*int lastRound = 1;
-            for(int currentRound = 0; currentRound < half; currentRound++)
-            {
-                for(int i=0;i<half;i++)
-                {
-                    j = i+(currentRound);
-                    if(j >= half)
-                        j -= half;
-                    match = new MatchQueue::Match(blue[i], red[j], "0-0",*lastSaturday);
-                    lastSaturday = addDays(lastSaturday, 1);
-                    roundList->addMatch(lastRound, match);
-
-                    //Add the reverse TODO: Check its date
-                    reverse = new MatchQueue::Match(red[j], blue[i], "0-0",*lastSaturday);
-                    roundList->addMatch(lastRound+size-1, reverse);
-                    //cout << "reverseRound = " << lastRound+size-1 <<endl;
-                }
-                lastRound++;
-            }*/
-
-            //Blue vs. Blue
-            /*int k = 1;
-            int matchesAdded = 0;
-            for(int l = half-1;l>0;l--)
-            {
-                for(int i =0; i<l;i++)
-                {
-                    matchesAdded++;
-                    match = new MatchQueue::Match(blue[i], blue[i+k], "0-0", *lastSaturday);
-                    lastSaturday = addDays(lastSaturday, 1);
-                    roundList->addMatch(lastRound, match);
-
-                    reverse = new MatchQueue::Match(blue[i+k], blue[i], "0-0",*lastSaturday);
-                    roundList->addMatch(lastRound+size-1, reverse);
-
-                    if(matchesAdded%half==0)
-                        lastRound++;
-                }
-                k++;
-            }*/
-
-            //Red vs. Red
-            /*k = 1;
-            for(int l = half-1;l>0;l--)
-            {
-                for(int i =0; i<l;i++)
-                {
-                    matchesAdded++;
-
-                    match = new MatchQueue::Match(red[i], red[i+k], "0-0", *lastSaturday);
-                    lastSaturday = addDays(lastSaturday, 1);
-                    roundList->addMatch(lastRound, match);
-
-                    reverse = new MatchQueue::Match(red[i+k], red[i], "0-0",*lastSaturday);
-                    roundList->addMatch(lastRound+size-1, reverse);
-
-                    if(matchesAdded%half == 0)
-                        lastRound++;
-                }
-                k++;
-            }*/
-            //roundList->printCalendar();
 
         }
     }else if(command == "VIAJAR")

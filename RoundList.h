@@ -25,8 +25,9 @@ public:
     void addMatch(int idRound, MatchQueue::Match* match);
 
     void printCalendar();
+    int whoDidTheyPlayAgainst(int team);
 
-private:
+//private:
     Round* head;
     Round* tail;
 };

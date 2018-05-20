@@ -10,10 +10,9 @@ public:
     struct Match{
         int teamHome;
         int teamAway;
-        string score;
         tm date;
         Match* next;
-        Match(int teamHome, int teamAway, string score, tm date);
+        Match(int teamHome, int teamAway, tm date);
     };
 
     MatchQueue();
@@ -24,7 +23,7 @@ public:
 
     Match* dequeue();
 
-private:
+//private:
     Match* head;
     Match* tail;
 

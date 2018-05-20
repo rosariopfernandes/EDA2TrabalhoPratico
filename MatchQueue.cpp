@@ -1,10 +1,9 @@
 #include <iomanip>
 #include "MatchQueue.h"
 
-MatchQueue::Match::Match(int teamHome, int teamAway, string score, tm date) {
+MatchQueue::Match::Match(int teamHome, int teamAway, tm date) {
     this->teamHome = teamHome;
     this->teamAway = teamAway;
-    this->score = score;
     this->date = date;
     this->next = NULL;
 }
@@ -18,13 +17,14 @@ bool MatchQueue::isEmpty() {
     return head == NULL;
 }
 
-void MatchQueue::enqueue(MatchQueue::Match *Match) {
+void MatchQueue::enqueue(MatchQueue::Match *match) {
+    match->next = NULL;
     if(isEmpty())
-        head = tail = Match;
+        head = tail = match;
     else
     {
-        tail->next = Match;
-        tail = Match;
+        tail->next = match;
+        tail = match;
     }
 }
 
