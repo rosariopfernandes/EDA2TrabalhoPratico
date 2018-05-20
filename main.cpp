@@ -28,43 +28,17 @@ tm* getNextSaturday(tm *gmnow)
 {
     while(gmnow->tm_wday != 6)
         addDays(gmnow, 1);
-    //cout << gmnow->tm_mday <<"/" << gmnow->tm_mon << endl;
     return gmnow;
 }
 
-struct MatchDone{
-    int team1;
-    int team2;
-    MatchDone* next;
-    int round;
-} *headMatch, *tailMatch;
-
-bool havePlayed(int team1, int team2, int round)
+tm* getNextDate(tm *gmnow)
 {
-    for(MatchDone* match = headMatch; match != NULL; match = match->next)
-    {
-        if((team1 == match->team1 && team2 == match->team2) ||
-            (team1 == match->team2 && team2 == match->team1))
-        {
-            cout << team1 << "já jogou com " << team2 << "no round "<< round << endl;
-            return true;
-        }
-    }
-    return false;
-}
-
-void addMatch(int team1, int team2, int round){
-    MatchDone *match = new MatchDone;
-    match->team1 = team1;
-    match->team2 = team2;
-    match->round = round;
-    match->next = NULL;
-    if(headMatch == NULL)
-        headMatch = tailMatch = match;
-    else{
-        tailMatch->next = match;
-        tailMatch = match;
-    }
+    tm* nextDate;
+    if(gmnow->tm_wday == 6)
+        nextDate = addDays(gmnow, 1);
+    else
+        nextDate = getNextSaturday(gmnow);
+    return nextDate;
 }
 
 int whoDidTheyPlayAgainst(int team, RoundList::Round *round)
@@ -297,7 +271,6 @@ void listenForInput(CityList *cityList, RouteList *routeList)
 
     }else if(command == "GERAR_CALENDARIO_DE_FUTEBOL")
     {
-        //generateMatchCalendar(cityList);
         int size = cityList->size();
         if(size %2 != 0)
             cout << "ERRO! O MAPA_DO_JOGO CONTEM UM NUMERO IMPAR DE CIDADES!" << endl;
@@ -311,64 +284,60 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                 hasPlayedRound.push_back(false);
                 city = city->next;
             }
-            int half = size/2;
 
             time_t now = time(0);
             tm* gmnow = gmtime(&now);
-            tm* lastSaturday = getNextSaturday(gmnow);
+            tm* date = getNextSaturday(gmnow);
 
             int roundSize =cityList->size()-1;
-            int currentMinus = size;
-            cityIds[roundSize] = currentMinus;
+            int optionalTeam = size;
+            cityIds[roundSize] = optionalTeam;
             RoundList* roundList = new RoundList(cityList->size());
             MatchQueue::Match* match2;
             RoundList::Round *currentRound = roundList->head;
 
+            //First round
             int j = roundSize;
-            for(int i =0; i< half;i++) {
-                match2 = new MatchQueue::Match(cityIds[i], cityIds[j],
-                                                *lastSaturday);
+            for(int i =0; i< size/2;i++) {
+                match2 = new MatchQueue::Match(cityIds[i], cityIds[j], *date);
                 currentRound->matchQueue->enqueue(match2);
+                date = getNextDate(date);
                 j--;
             }
 
             RoundList::Round *previousRound = currentRound;
             currentRound = currentRound->next;
 
-            /*for(MatchQueue::Match *match = previousRound->matchQueue->head;
-                match!=NULL; match = match->next)*/
-
-
-            for(int i = 0; i<size; i++)
+            //Following rounds
+            for(int l= 0; l< size-2;l++)
             {
-                cout << "Qual é o elemento? " << cityIds[i] << endl;
-                if(cityIds[i] == currentMinus)
-                    continue;
-                int indexHome = i;
-                cout << "Já jogou neste round? ";
-                if(!hasPlayedRound[indexHome]){ //Ja jogou neste round?
-                    cout << "Não" << endl;
+                for(int i = 0; i<size-1; i++)
+                {
+                    if(!hasPlayedRound[i]){
+                        j = whoDidTheyPlayAgainst(cityIds[i],previousRound);
+                        if(j == optionalTeam)
+                            j = cityIds[i];
+                        j++;
+                        if(j>size)
+                            j = 1;
+                        if(cityIds[i] == j)
+                            j=optionalTeam;
 
-                    //j = match->teamAway; //Jogou com quem?
-                    j = whoDidTheyPlayAgainst(cityIds[i],previousRound); //Jogou com quem?
-                    cout << "Jogou com quem? " << j << endl;
-                    if(j == currentMinus) //Jogou com ele próprio?
-                        j = cityIds[i];
-                    j++; //Agora joga com a team a seguir.
-                    cout << "+1 = " << j << endl;
-                    if(j>size) //Circular
-                        j = 1;
-                    if(cityIds[i] == j) //if(4==4)
-                        j=currentMinus; //adversario = -1
+                        if(l%2==0)
+                            match2 = new MatchQueue::Match(j, cityIds[i], *date);
+                        else
+                            match2 = new MatchQueue::Match(cityIds[i], j, *date);
+                        currentRound->matchQueue->enqueue(match2);
 
-                    match2 = new MatchQueue::Match(cityIds[i], j,
-                                                  *lastSaturday);
-                    currentRound->matchQueue->enqueue(match2);
-                    hasPlayedRound[indexHome] = true;
-                    hasPlayedRound[indexOf(j,cityIds)] = true;
-
-                } else
-                    cout << "Sim" << endl;
+                        date = getNextDate(date);
+                        hasPlayedRound[i] = true;
+                        hasPlayedRound[indexOf(j,cityIds)] = true;
+                    }
+                }
+                for(int m = 0; m<hasPlayedRound.size(); m++)
+                    hasPlayedRound[m] = false;
+                previousRound = currentRound;
+                currentRound = currentRound->next;
             }
 
             roundList->printCalendar();

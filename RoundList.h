@@ -22,10 +22,7 @@ public:
 
     void add(int id);
 
-    void addMatch(int idRound, MatchQueue::Match* match);
-
     void printCalendar();
-    int whoDidTheyPlayAgainst(int team);
 
 //private:
     Round* head;

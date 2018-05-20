@@ -21,19 +21,6 @@ void RoundList::add(int id) {
     }
 }
 
-void RoundList::addMatch(int idRound, MatchQueue::Match *match) {
-    Round* round = head;
-    while(round != NULL)
-    {
-        if(round->id == idRound)
-        {
-            round->matchQueue->enqueue(match);
-            break;
-        }
-        round = round->next;
-    }
-}
-
 void RoundList::printCalendar() {
     Round* round = head;
     MatchQueue* queue;
@@ -48,8 +35,8 @@ void RoundList::printCalendar() {
             cout << match->teamHome << " VS " << match->teamAway << " ";
             string weekDay[] = {"DOMINGO","Segunda","Terça","Quarta","Quinta","Sexta","SABADO"};
             tm date = match->date;
-            cout <</* weekDay[date.tm_wday] <<" ";
-            cout << date.tm_mday << "/" << date.tm_mon <<*/ endl;
+            cout << weekDay[date.tm_wday] <<" ";
+            cout << date.tm_mday << "/" << (date.tm_mon+1) << endl;
         }
         cout << endl;
         round = round->next;
