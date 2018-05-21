@@ -308,13 +308,13 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             RoundList::Round *previousRound = currentRound;
             currentRound = currentRound->next;
 
-            //Following rounds
+            //Following rounds (1st leg)
             for(int l= 0; l< size-2;l++)
             {
                 for(int i = 0; i<size-1; i++)
                 {
                     if(!hasPlayedRound[i]){
-                        j = whoDidTheyPlayAgainst(cityIds[i],previousRound);
+                        j = whoDidTheyPlayAgainst(cityIds[i], previousRound);
                         if(j == optionalTeam)
                             j = cityIds[i];
                         j++;
@@ -337,6 +337,22 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                 for(int m = 0; m<hasPlayedRound.size(); m++)
                     hasPlayedRound[m] = false;
                 previousRound = currentRound;
+                currentRound = currentRound->next;
+            }
+
+            //2nd leg
+            RoundList::Round *firstLegRound = roundList->head;
+
+            for(int i=0; i<size-1; i++)
+            {
+                for(MatchQueue::Match *firstLegMatch=firstLegRound->matchQueue->head;
+                        firstLegMatch!=NULL; firstLegMatch = firstLegMatch->next)
+                {
+                    match2 = new MatchQueue::Match(firstLegMatch->teamAway, firstLegMatch->teamHome, *date);
+                    currentRound->matchQueue->enqueue(match2);
+                    date = getNextDate(date);
+                }
+                firstLegRound = firstLegRound->next;
                 currentRound = currentRound->next;
             }
 
