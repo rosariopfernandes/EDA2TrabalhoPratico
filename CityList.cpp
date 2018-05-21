@@ -63,11 +63,7 @@ CityList::City* CityList::getById(int id) {
  * @param city - the city to print
  */
 void CityList::printCity(City *city) {
-    cout << "Cidade:{ id=" << city->id << ", ";
-    cout << "nome=" << city->name /*<< ", "*/;
-    //cout << "estradas={}";
-    //city->streetList->printListMostExp();
-    cout << "}";
+    cout << city->id << ". " << city->name;
 }
 
 /**

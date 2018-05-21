@@ -6,7 +6,7 @@ RouteList::Route::Route(int idRoute, int firstCity, int lastCity) {
     this->firstCity = firstCity;
     this->lastCity = lastCity;
     next = NULL;
-    stopoverQueue = NULL;
+    stopoverQueue = new StopoverQueue;
 }
 
 RouteList::RouteList() {
@@ -73,7 +73,7 @@ int RouteList::printListMostExp(int firstCity, int lastCity) {
         {
             queue = route->stopoverQueue;
             routePrice = queue->getTotalDistance();
-            if(routePrice > mostExpensivePrice)
+            if(routePrice >= mostExpensivePrice)
                 mostExpensiveId = route->idRoute;
             cout << route->idRoute<<". ORIGEM="<<firstCity<<" DESTINO="<<lastCity
                  << " DISTANCE="<<routePrice << endl;

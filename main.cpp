@@ -114,7 +114,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             if(city->streetList == NULL)
                 city->streetList = new StreetList;
             city->streetList->add(street);
-            //TODO: Test this
+            //Tested this and it didn't work.
             /*StreetList::Street *street2 = new StreetList::Street(city, distance, 0,0,0);
             destination->streetList->add(street2);*/
             cout << "SUCESSO! ESTRADA ADICIONADA {ORIGEM:"<<city1 <<
@@ -252,20 +252,34 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             {
                 cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << city2 << endl;
             } else{
-                //TODO: Mostrar todas cidades que estão entre city1 e city2
                 // E pedir para escolher em que cidades quer fazer paragem.
                 // Quando ele termina de escolher, verificar se a rota já existe
                 // Se não existe, adicionar.
+                cityList->printList();
                 int stopoverId;
+                double distance;
                 CityList::City *stopCity;
+                RouteList::Route *route = new RouteList::Route(1, city1, city2);
+                StopoverQueue::Stopover *stopover;
                 do{
-                    cout <<"(Introduza -1 quando terminar) PARAGEM_ID:";
+                    cout <<"(Introduza 0 quando terminar) PARAGEM_ID:";
                     cin >> stopoverId;
-                    if(stopoverId == city1 || stopoverId == city2)
+                    if(stopoverId == 0)
+                        break;
+                    cout <<"DISTANCIA_ENTRE_A_ORIGEM_E_A_PARAGEM:";
+                    cin >> distance;
+                    stopCity = cityList->getById(stopoverId);
+                    if(stopoverId == city1 || stopoverId == city2 || stopCity == NULL)
                     {
                         cout << "PARAGEM INVÁLIDA" << endl;
                     }
-                }while (stopoverId != -1);
+                    else{
+                        stopover = new StopoverQueue::Stopover(stopoverId, distance);
+                        route->stopoverQueue->enqueue(stopover);
+                    }
+                }while (stopoverId != 0);
+                routeList->add(route);
+                cout << "SUCESSO! ROTA ADICIONADA." << endl;
             }
         }
 
@@ -275,6 +289,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         if(size %2 != 0)
             cout << "ERRO! O MAPA_DO_JOGO CONTEM UM NUMERO IMPAR DE CIDADES!" << endl;
         else{
+            //TODO: Play each round in a single week.
             vector<int> cityIds;
             vector<bool> hasPlayedRound;
             CityList::City *city = cityList->head;
@@ -405,23 +420,24 @@ void listenForInput(CityList *cityList, RouteList *routeList)
 
                             cout << "ORIGEM:" << lastCity << " DESTINO:" << stopover->idCity;
                             double distance = stopover->distance;
-                            cout << "DISTANCIA:"<< distance;
+                            cout << " DISTANCIA:"<< distance;
 
                             int refuelCount = (int)distance / 150;
                             int refuelCost = refuelCount*50000;
-                            cout << " ABASTECIMENTO: " << refuelCost;
+                            cout << "KM ABASTECIMENTO: " << refuelCost;
                             totalRefuelCount+=refuelCount;
 
                             maintenanceCount = totalRefuelCount/3;
                             int maintenanceCost = maintenanceCount*30000;
-                            cout << " MANUTENCAO: " << maintenanceCost << endl;
+                            cout << "MT MANUTENCAO: " << maintenanceCost <<"MT" << endl;
 
-                            //TODO: Test the file write
-                            ofstream os("UltimaRota.txt");
+                            ofstream os("RotasPercorridas.txt", std::ios_base::app);
                             os << "ORIGEM:" << lastCity << " DESTINO:" << stopover->idCity
-                                << "DISTANCIA:"<< distance << " ABASTECIMENTO: " << refuelCost
-                                << " MANUTENCAO: " << maintenanceCost << "\n";
+                                << " DISTANCIA:"<< distance << "KM ABASTECIMENTO: " << refuelCost
+                                << "MT MANUTENCAO: " << maintenanceCost << "MT\n";
                             os.close();
+
+                            lastCity = stopover->idCity;
                         }
                     } else{
                         cout << "ERRO! NÃO EXISTE ROTA DE ID=" << routeId << endl;
