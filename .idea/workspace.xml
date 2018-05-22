@@ -13,8 +13,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7edaa5a5-4def-451b-a2fa-94c668ce17b2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CityList.cpp" afterPath="$PROJECT_DIR$/CityList.cpp" />
-      <change beforePath="$PROJECT_DIR$/RouteList.cpp" afterPath="$PROJECT_DIR$/RouteList.cpp" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico" afterPath="$PROJECT_DIR$/cmake-build-debug/EDA2TrabalhoPratico" />
       <change beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
@@ -33,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="255" column="80" lean-forward="true" selection-start-line="255" selection-start-column="80" selection-end-line="255" selection-end-column="80" />
+              <caret line="297" column="46" lean-forward="true" selection-start-line="297" selection-start-column="46" selection-end-line="297" selection-end-column="46" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -44,8 +42,8 @@
       <file leaf-file-name="RouteList.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RouteList.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+            <state relative-caret-position="1368">
+              <caret line="76" column="49" lean-forward="false" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -64,8 +62,8 @@
       <file leaf-file-name="StopoverQueue.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/StopoverQueue.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+            <state relative-caret-position="216">
+              <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -254,7 +252,9 @@
       <workItem from="1526767318421" duration="2764000" />
       <workItem from="1526827348377" duration="10011000" />
       <workItem from="1526916109728" duration="2354000" />
-      <workItem from="1526935559688" duration="7142000" />
+      <workItem from="1526935559688" duration="7776000" />
+      <workItem from="1526994765169" duration="471000" />
+      <workItem from="1527016473077" duration="1968000" />
     </task>
     <task id="LOCAL-00001" summary="1. MAPA_DO_JOGO&#10;Created CityList and StreetList. That's the first graph">
       <created>1525277388474</created>
@@ -347,11 +347,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526917634954</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="4. PERCORRER_ROTA_AEREA&#10;Works minimally">
+      <created>1526945284632</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1526945284632</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127022000" />
+    <option name="totallyTimeSpent" value="130095000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -429,7 +436,8 @@
     <MESSAGE value="Can now generate 2 rounds of the calendar&#10;Committing this code that works minimally." />
     <MESSAGE value="Can now generate the first leg of the calendar&#10;Committing this code that works minimally." />
     <MESSAGE value="Can now generate all the calendar&#10;The Calendar is now generated fully. Using both 1st and 2nd leg." />
-    <option name="LAST_COMMIT_MESSAGE" value="Can now generate all the calendar&#10;The Calendar is now generated fully. Using both 1st and 2nd leg." />
+    <MESSAGE value="4. PERCORRER_ROTA_AEREA&#10;Works minimally" />
+    <option name="LAST_COMMIT_MESSAGE" value="4. PERCORRER_ROTA_AEREA&#10;Works minimally" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -673,7 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="21" column="1" lean-forward="false" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,7 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -697,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="20" column="34" lean-forward="true" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -713,14 +717,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="28" lean-forward="true" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StopoverQueue.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="12" column="46" lean-forward="true" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+        <state relative-caret-position="216">
+          <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -737,14 +740,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
           <caret line="65" column="42" lean-forward="false" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RouteList.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+        <state relative-caret-position="1368">
+          <caret line="76" column="49" lean-forward="false" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
           <folding />
         </state>
       </provider>
@@ -752,7 +754,7 @@
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="255" column="80" lean-forward="true" selection-start-line="255" selection-start-column="80" selection-end-line="255" selection-end-column="80" />
+          <caret line="297" column="46" lean-forward="true" selection-start-line="297" selection-start-column="46" selection-end-line="297" selection-end-column="46" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

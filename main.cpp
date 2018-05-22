@@ -31,16 +31,6 @@ tm* getNextSaturday(tm *gmnow)
     return gmnow;
 }
 
-tm* getNextDate(tm *gmnow)
-{
-    tm* nextDate;
-    if(gmnow->tm_wday == 6)
-        nextDate = addDays(gmnow, 1);
-    else
-        nextDate = getNextSaturday(gmnow);
-    return nextDate;
-}
-
 int whoDidTheyPlayAgainst(int team, RoundList::Round *round)
 {
     MatchQueue::Match *match = round->matchQueue->head;
@@ -289,7 +279,6 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         if(size %2 != 0)
             cout << "ERRO! O MAPA_DO_JOGO CONTEM UM NUMERO IMPAR DE CIDADES!" << endl;
         else{
-            //TODO: Play each round in a single week.
             vector<int> cityIds;
             vector<bool> hasPlayedRound;
             CityList::City *city = cityList->head;
@@ -305,7 +294,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             tm* date = getNextSaturday(gmnow);
 
             int roundSize =cityList->size()-1;
-            int optionalTeam = size;
+            int optionalTeam = cityIds[size-1];
             cityIds[roundSize] = optionalTeam;
             RoundList* roundList = new RoundList(cityList->size());
             MatchQueue::Match* match2;
@@ -313,12 +302,17 @@ void listenForInput(CityList *cityList, RouteList *routeList)
 
             //First round
             int j = roundSize;
+            int scheduledGamesPerRound = 0;
             for(int i =0; i< size/2;i++) {
                 match2 = new MatchQueue::Match(cityIds[i], cityIds[j], *date);
                 currentRound->matchQueue->enqueue(match2);
-                date = getNextDate(date);
+                scheduledGamesPerRound++;
+                if(scheduledGamesPerRound == size/4)
+                    date = addDays(date, 1);
                 j--;
             }
+            scheduledGamesPerRound = 0;
+            date = addDays(date, 6);
 
             RoundList::Round *previousRound = currentRound;
             currentRound = currentRound->next;
@@ -330,29 +324,33 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                 {
                     if(!hasPlayedRound[i]){
                         j = whoDidTheyPlayAgainst(cityIds[i], previousRound);
-                        if(j == optionalTeam)
-                            j = cityIds[i];
+                        j = indexOf(j, cityIds);
+                        if(cityIds[j] == optionalTeam)
+                            j = i;
                         j++;
-                        if(j>size)
-                            j = 1;
-                        if(cityIds[i] == j)
-                            j=optionalTeam;
+                        if(j>size-1)
+                            j = 0;
+                        if(cityIds[i] == cityIds[j])
+                            j=size-1;
 
                         if(l%2==0)
-                            match2 = new MatchQueue::Match(j, cityIds[i], *date);
+                            match2 = new MatchQueue::Match(cityIds[j], cityIds[i], *date);
                         else
-                            match2 = new MatchQueue::Match(cityIds[i], j, *date);
+                            match2 = new MatchQueue::Match(cityIds[i], cityIds[j], *date);
                         currentRound->matchQueue->enqueue(match2);
-
-                        date = getNextDate(date);
+                        scheduledGamesPerRound++;
+                        if(scheduledGamesPerRound==size/4)
+                            date = addDays(date, 1);
                         hasPlayedRound[i] = true;
-                        hasPlayedRound[indexOf(j,cityIds)] = true;
+                        hasPlayedRound[j] = true;
                     }
                 }
                 for(int m = 0; m<hasPlayedRound.size(); m++)
                     hasPlayedRound[m] = false;
                 previousRound = currentRound;
                 currentRound = currentRound->next;
+                scheduledGamesPerRound = 0;
+                date = addDays(date, 6);
             }
 
             //2nd leg
@@ -365,10 +363,14 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                 {
                     match2 = new MatchQueue::Match(firstLegMatch->teamAway, firstLegMatch->teamHome, *date);
                     currentRound->matchQueue->enqueue(match2);
-                    date = getNextDate(date);
+                    scheduledGamesPerRound++;
+                    if(scheduledGamesPerRound==size/4)
+                        date = addDays(date, 1);
                 }
                 firstLegRound = firstLegRound->next;
                 currentRound = currentRound->next;
+                scheduledGamesPerRound = 0;
+                date = addDays(date, 6);
             }
 
             roundList->printCalendar();
