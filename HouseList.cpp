@@ -40,11 +40,6 @@ void HouseList::printHouse(House *house) {
     cout << "Casa { id=" <<house->id << "}";
 }
 
-void HouseList::printHouse(int id) {
-    House* house = getById(id);
-    printHouse(house);
-}
-
 void HouseList::printList() {
     House* house = head;
     while(house!=NULL)

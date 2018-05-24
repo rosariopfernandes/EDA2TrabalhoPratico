@@ -25,8 +25,6 @@ public:
 
     House* getById(int id);
 
-    void printHouse(int id);
-
     void printList();
 
 private:

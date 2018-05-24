@@ -23,8 +23,8 @@ public:
 
     Match* dequeue();
 
-//private:
     Match* head;
+private:
     Match* tail;
 
 };

@@ -84,6 +84,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BTree.cpp">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
+		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BTree.h">
+			<Option target="EDA2TrabalhoPratico"/>
+		</Unit>
 		<Unit filename="/home/rosariopfernandes/CLionProjects/EDA2TrabalhoPratico/BridgeList.cpp">
 			<Option target="EDA2TrabalhoPratico"/>
 		</Unit>

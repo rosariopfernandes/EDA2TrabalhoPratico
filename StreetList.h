@@ -27,9 +27,7 @@ public:
 
     void add(Street* newStreet);
 
-    Street* getStreet(int destination);
-
-    Street* getById(int id);
+    Street* getById(int idStreet);
 
     void updateStreet(int destination, int thieves, int police);
 
@@ -37,7 +35,6 @@ public:
 
     void printStreet(int source, int destination);
 
-//private:
     Street* head;
     Street* tail;
     void printStreet(Street* street);

@@ -28,18 +28,18 @@ void StopoverQueue::enqueue(Stopover* stopover) {
 StopoverQueue::Stopover *StopoverQueue::dequeue() {
     if(isEmpty())
         return NULL;
-    Stopover* stopover = head;
+    Stopover* aux = head;
     head = head->next;
-    return stopover;
+    return aux;
 }
 
 double StopoverQueue::getTotalDistance() {
     double distance = 0;
-    Stopover* stopover = head;
-    while (stopover != NULL)
+    Stopover* aux = head;
+    while (aux != NULL)
     {
-        distance+= stopover->distance;
-        stopover = stopover->next;
+        distance+= aux->distance;
+        aux = aux->next;
     }
     return distance;
 }

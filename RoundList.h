@@ -20,12 +20,12 @@ public:
 
     bool isEmpty();
 
-    void add(int id);
+    void add(int roundId);
 
     void printCalendar();
 
-//private:
     Round* head;
+private:
     Round* tail;
 };
 

@@ -123,6 +123,33 @@ EDA2TrabalhoPratico/fast:
 	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/build
 .PHONY : EDA2TrabalhoPratico/fast
 
+BTree.o: BTree.cpp.o
+
+.PHONY : BTree.o
+
+# target to build an object file
+BTree.cpp.o:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BTree.cpp.o
+.PHONY : BTree.cpp.o
+
+BTree.i: BTree.cpp.i
+
+.PHONY : BTree.i
+
+# target to preprocess a source file
+BTree.cpp.i:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BTree.cpp.i
+.PHONY : BTree.cpp.i
+
+BTree.s: BTree.cpp.s
+
+.PHONY : BTree.s
+
+# target to generate assembly for a file
+BTree.cpp.s:
+	$(MAKE) -f CMakeFiles/EDA2TrabalhoPratico.dir/build.make CMakeFiles/EDA2TrabalhoPratico.dir/BTree.cpp.s
+.PHONY : BTree.cpp.s
+
 BridgeList.o: BridgeList.cpp.o
 
 .PHONY : BridgeList.o
@@ -375,6 +402,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... EDA2TrabalhoPratico"
+	@echo "... BTree.o"
+	@echo "... BTree.i"
+	@echo "... BTree.s"
 	@echo "... BridgeList.o"
 	@echo "... BridgeList.i"
 	@echo "... BridgeList.s"

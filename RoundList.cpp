@@ -10,8 +10,8 @@ RoundList::Round::Round(int id) {
     this->next = NULL;
 }
 
-void RoundList::add(int id) {
-    Round* round = new Round(id);
+void RoundList::add(int roundId) {
+    Round* round = new Round(roundId);
     if(isEmpty())
         head = tail = round;
     else
@@ -22,24 +22,24 @@ void RoundList::add(int id) {
 }
 
 void RoundList::printCalendar() {
-    Round* round = head;
-    MatchQueue* queue;
-    MatchQueue::Match *match;
-    while(round != NULL)
+    string weekDays[] = {"DOMINGO","Segunda","Terça","Quarta","Quinta","Sexta","SABADO"};
+    Round* auxRound = head;
+    MatchQueue* auxMatchQueue;
+    MatchQueue::Match *auxMatch;
+    while(auxRound != NULL)
     {
-        cout << "JORNADA " << round->id << endl;
-        queue = round->matchQueue;
-        while(!queue->isEmpty())
+        cout << "JORNADA " << auxRound->id << endl;
+        auxMatchQueue = auxRound->matchQueue;
+        while(!auxMatchQueue->isEmpty())
         {
-            match = queue->dequeue();
-            cout << match->teamHome << " VS " << match->teamAway << " ";
-            string weekDay[] = {"DOMINGO","Segunda","Terça","Quarta","Quinta","Sexta","SABADO"};
-            tm date = match->date;
-            cout << weekDay[date.tm_wday] <<" ";
+            auxMatch = auxMatchQueue->dequeue();
+            cout << auxMatch->teamHome << " VS " << auxMatch->teamAway << " ";
+            tm date = auxMatch->date;
+            cout << weekDays[date.tm_wday] << " ";
             cout << date.tm_mday << "/" << (date.tm_mon+1) << endl;
         }
         cout << endl;
-        round = round->next;
+        auxRound = auxRound->next;
     }
 }
 
