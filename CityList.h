@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "HouseList.h"
 
 using namespace std;
@@ -41,7 +42,7 @@ public:
 
     void addHouses(int idCity, int nrHouses);
 
-    void executeDijkstra(int source);
+    void executeDijkstra(int source, int destination);
 
     City* head;
 
@@ -56,11 +57,13 @@ private:
     };
     vector<DijkstraPath>dijkstraPathTree;
 
+    vector<int> shortestPath;
+
     int graphSize;
     void initTree(int source);
     int getNextVisit();
     void dijkstraShortestPaths();
-    void viewShortestPaths();
+    void findPath(int source, int destination);
 };
 
 

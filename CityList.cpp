@@ -6,7 +6,7 @@ CityList::City::City(int id, string name) {
     this->id = id;
     this->name = name;
     this->next = NULL;
-    this->streetList = NULL;
+    this->streetList = new StreetList;
     this->houseList = NULL;
 }
 
@@ -140,6 +140,7 @@ void CityList::addHouses(int idCity, int nrHouses) {
 void CityList::initTree(int source) {
     DijkstraPath dijkstraPath;
     City *city = head;
+    dijkstraPathTree = vector<DijkstraPath>();
     while(city!=NULL)
     {
         dijkstraPath.city1 = -1;
@@ -179,18 +180,19 @@ void CityList::dijkstraShortestPaths() {
         nextVisitDistance = dijkstraPathTree[nextVisitPosition].distance;
         nextVisitDestination = dijkstraPathTree[nextVisitPosition].city2;
 
-        streetList = get(nextVisitDestination)->streetList;
+        streetList = getById(nextVisitDestination)->streetList;
         street = streetList->head;
         while(street!=NULL)
         {
-            for(DijkstraPath path : dijkstraPathTree)
+            for(int i=0; i< dijkstraPathTree.size();i++)
             {
-                if(path.city2 == street->destination->id)
+                if(dijkstraPathTree[i].city2 == street->destination->id)
                 {
-                    if(path.distance > street->distance + nextVisitDistance)
+                    if(dijkstraPathTree[i].distance > street->distance + nextVisitDistance)
                     {
-                        path.distance = street->distance + nextVisitDistance;
-                        path.city1 = nextVisitDestination;
+                        dijkstraPathTree[i].distance = street->distance + nextVisitDistance;
+                        dijkstraPathTree[i].city1 = nextVisitDestination;
+                        //cout << nextVisitDestination << "to" << street->destination->id << endl;
                     }
                 }
             }
@@ -201,20 +203,38 @@ void CityList::dijkstraShortestPaths() {
     }
 }
 
-void CityList::viewShortestPaths() {
-    for(DijkstraPath path : dijkstraPathTree)
-    {
-        if(path.city1 != -1)
-        {
-            cout << "ORIGEM: " << path.city1;
-            cout << " DESTINO: " << path.city2;
-            cout << " DISTANCIA: " << path.distance << endl;
-        }
-    }
-}
-
-void CityList::executeDijkstra(int source) {
+void CityList::executeDijkstra(int source, int destination) {
     initTree(source);
     dijkstraShortestPaths();
-    viewShortestPaths();
+    shortestPath = vector<int>();
+    findPath(source, destination);
+    for(DijkstraPath path : dijkstraPathTree)
+        if(path.city1 != -1 && path.city2 == destination)
+            cout << "DISTANCIA TOTAL: " << path.distance << endl;
+}
+
+void CityList::findPath(int source, int destination) {
+    if(destination == source)
+    {
+        shortestPath.push_back(source);
+        reverse(shortestPath.begin(), shortestPath.end());
+        for(int i=0;i<shortestPath.size();i++)
+        {
+            if(i!=0)
+                cout << "->";
+            cout << shortestPath[i];
+        }
+        cout << endl;
+    }
+    else
+    {
+        for(DijkstraPath path : dijkstraPathTree)
+        {
+            if(path.city1 != -1 && path.city2 == destination)
+            {
+                shortestPath.push_back(destination);
+                findPath(source, path.city1);
+            }
+        }
+    }
 }

@@ -16,6 +16,23 @@ using namespace std;
  *    E se o percurso terminar na cidade do assassinato? Não tem problema.
  */
 
+int readClue()
+{
+    char line[256];
+    ifstream is("Pista.txt");
+    int number = 0;
+    if(is)
+    {
+        while(is.getline(line, sizeof(line)))
+            number = atoi(line);
+        is.close();
+    }
+    else{
+        cout << "FICHEIRO 'Pista.txt' NÃO ENCONTRADO!";
+    }
+    return number;
+}
+
 tm* addDays( struct tm* date, int days )
 {
     const time_t ONE_DAY = 24 * 60 * 60;
@@ -104,9 +121,6 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             if(city->streetList == NULL)
                 city->streetList = new StreetList;
             city->streetList->add(street);
-            //Tested this and it didn't work.
-            /*StreetList::Street *street2 = new StreetList::Street(city, distance, 0,0,0);
-            destination->streetList->add(street2);*/
             cout << "SUCESSO! ESTRADA ADICIONADA {ORIGEM:"<<city1 <<
                  "; DESTINO:"<<city2 << "; DISTANCIA=" <<distance<<"KM}!" << endl;
         }
@@ -452,22 +466,30 @@ void listenForInput(CityList *cityList, RouteList *routeList)
 
     }else if(command == "ASSASSINATO_NO_MAPA_MUNDO")
     {
-        //TODO: Exercício 9
         int sourceId, destinationId;
         cout << "CIDADE_ASSASSINATO:" ;
         cin >> sourceId;
 
-        CityList::City *city1 = cityList->get(sourceId);
+        CityList::City *city1 = cityList->getById(sourceId);
         if(city1 == NULL)
             cout << "NÃO EXISTE CIDADE COM ID="<<sourceId << endl;
         else{
             cout << "CIDADE_DOCUMENTO:";
             cin >> destinationId;
-            CityList::City *city2 = cityList->get(sourceId);
-            if(city2 == NULL)
-                cout << "NÃO EXISTE CIDADE COM ID=" << destinationId << endl;
+            if(sourceId == destinationId)
+                cout << "O DOCUMENTO ENCONTRA-SE SEMPRE, NUMA CIDADE DIFERENTE"
+                        " DA CIDADE ONDE OS POLÍCIAS ESTÃO ACTUALMENTE." << endl;
             else{
-                cityList->executeDijkstra(sourceId);
+                CityList::City *city2 = cityList->getById(sourceId);
+                if(city2 == NULL)
+                    cout << "NÃO EXISTE CIDADE COM ID=" << destinationId << endl;
+                else{
+                    cityList->executeDijkstra(sourceId, destinationId);
+
+
+                    int nrCities = readClue();
+                    cout << "nrCities=" << nrCities << endl;
+                }
             }
         }
 
