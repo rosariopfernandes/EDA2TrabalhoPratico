@@ -14,7 +14,7 @@ public:
         int lastCity;
         Route* next;
         StopoverQueue* stopoverQueue;
-        Route(int idRoute, int firstCity, int lastCity);
+        Route(int firstCity, int lastCity);
     };
 
     RouteList();
@@ -24,6 +24,8 @@ public:
     void add(Route* route);
 
     Route* getById(int idRoute);
+
+    bool contains(Route* route);
 
     Route* getRoute(int firstCity, int lastCity);
 
@@ -37,10 +39,11 @@ public:
 
     int printListMostExp(int firstCity, int lastCity);
 
+    void printRoute(Route* route);
+
+    Route* tail;
 private:
     Route* head;
-    Route* tail;
-    void printRoute(Route* route);
 };
 
 

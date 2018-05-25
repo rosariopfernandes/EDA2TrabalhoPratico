@@ -8,7 +8,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/EDA2TrabalhoPratico.dir/StopoverQueue.cpp.o"
   "CMakeFiles/EDA2TrabalhoPratico.dir/MatchQueue.cpp.o"
   "CMakeFiles/EDA2TrabalhoPratico.dir/RoundList.cpp.o"
-  "CMakeFiles/EDA2TrabalhoPratico.dir/BTree.cpp.o"
   "EDA2TrabalhoPratico.pdb"
   "EDA2TrabalhoPratico"
 )

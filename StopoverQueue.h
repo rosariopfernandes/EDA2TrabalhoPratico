@@ -24,7 +24,7 @@ public:
 
     double getTotalDistance();
 
-private:
+//private:
     Stopover* head;
     Stopover* tail;
 };

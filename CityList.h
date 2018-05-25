@@ -46,6 +46,10 @@ public:
 
     City* head;
 
+    int getRandomCity(int documentCity);
+
+    int solveCrime(City *city, bool explored[], int goal);
+
 private:
     City* tail;
     void printCity(City *city);
@@ -64,6 +68,18 @@ private:
     int getNextVisit();
     void dijkstraShortestPaths();
     void findPath(int source, int destination);
+
+    struct StackSuccessores {
+        City *city;
+        StackSuccessores *next;
+    };
+    StackSuccessores *headPilha=NULL;
+
+    void pushPilha(City* city);
+
+    City* popPilha();
+
+    int nrCitiesReachable(int rootVertice, vector<bool>exploredCities);
 };
 
 

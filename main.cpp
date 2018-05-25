@@ -10,12 +10,6 @@
 
 using namespace std;
 
-/*
- *    Se o documento do policia tiver o número 5. E no meio dessas 5 cidades do percurso ele volta para
- *    a cidade do assassinato, essa cidade conta? Sim, conta.
- *    E se o percurso terminar na cidade do assassinato? Não tem problema.
- */
-
 int readClue()
 {
     char line[256];
@@ -80,10 +74,10 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         return;
     } else if( command == "CRIAR_MAPA_DO_JOGO_CIDADE")
     {
-        cout << "ID_CIDADE:";
+        //cout << "ID_CIDADE:";
         int idCity;
         cin >> idCity;
-        cout << "NOME_CIDADE:";
+        //cout << "NOME_CIDADE:";
         string nameCity;
         cin >> nameCity;
         CityList::City *city = new CityList::City(idCity, nameCity);
@@ -92,14 +86,14 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                 "; NOME: "<<nameCity<<"}!" << endl;
     }else if(command == "CRIAR_MAPA_DO_JOGO_ESTRADA")
     {
-        cout << "ID_CIDADE_ORIGEM:";
+        //cout << "ID_CIDADE_ORIGEM:";
         int city1;
         cin >> city1;
-        cout << "ID_CIDADE_DESTINO:";
+        //cout << "ID_CIDADE_DESTINO:";
         int city2;
         cin >> city2;
 
-        cout << "DISTANCIA:";
+        //cout << "DISTANCIA:";
         double distance;
         cin >> distance;
 
@@ -126,17 +120,17 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         }
     }else if(command == "ACTUALIZAR_MAPA_DO_JOGO_INFO_CRIMINOSA")
     {
-        cout << "ID_CIDADE_ORIGEM:";
+        //cout << "ID_CIDADE_ORIGEM:";
         int city1;
         cin >> city1;
-        cout << "ID_CIDADE_DESTINO:";
+        //cout << "ID_CIDADE_DESTINO:";
         int city2;
         cin >> city2;
 
-        cout << "NUMERO_DE_LADROES_NESTA_ESTRADA:";
+        //cout << "NUMERO_DE_LADROES_NESTA_ESTRADA:";
         int thieves;
         cin >> thieves;
-        cout << "NUMERO_DE_POLICIAS_NESTA_ESTRADA:";
+        //cout << "NUMERO_DE_POLICIAS_NESTA_ESTRADA:";
         int police;
         cin >> police;
 
@@ -160,7 +154,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         else
         {
             origin->streetList->printStreet(city1, city2);
-            cout << "ID_ESTRADA:" << endl;
+            //cout << "ID_ESTRADA:" << endl;
             int streetId;
             cin >> streetId;
             if(origin->streetList->getById(streetId) == NULL)
@@ -170,10 +164,10 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         }
     }else if(command == "ACTUALIZAR_MAPA_DO_JOGO_INFO_CASAS")
     {
-        cout << "ID_CIDADE:";
+        //cout << "ID_CIDADE:";
         int city;
         cin >> city;
-        cout << "NUMERO_DE_CASAS:";
+        //cout << "NUMERO_DE_CASAS:";
         int housesNr;
         cin >> housesNr;
         if(housesNr < 0)
@@ -185,14 +179,14 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             cityList->addHouses(city, housesNr);
     }else if(command == "CRIAR_CIDADE_PONTE")
     {
-        cout << "ID_CASA_ORIGEM:";
+        //cout << "ID_CASA_ORIGEM:";
         int house1;
         cin >> house1;
-        cout << "ID_CASA_DESTINO:";
+        //cout << "ID_CASA_DESTINO:";
         int house2;
         cin >> house2;
 
-        cout << "DISTANCIA:";
+        //cout << "DISTANCIA:";
         double distance;
         cin >> distance;
 
@@ -204,7 +198,7 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         }else {
             cityList->printList();
             int cityId;
-            cout << "ID_CIDADE:";
+            //cout << "ID_CIDADE:";
             cin >> cityId;
             CityList::City *city = cityList->getById(cityId);
             if(city==NULL)
@@ -236,10 +230,10 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         }
     }else if(command == "ADICIONAR_ROTA")
     {
-        cout << "ID_CIDADE_ORIGEM:";
+        //cout << "ID_CIDADE_ORIGEM:";
         int city1;
         cin >> city1;
-        cout << "ID_CIDADE_DESTINO:";
+        //cout << "ID_CIDADE_DESTINO:";
         int city2;
         cin >> city2;
 
@@ -256,14 +250,11 @@ void listenForInput(CityList *cityList, RouteList *routeList)
             {
                 cout << "ERRO! NÃO EXISTE NENHUMA CIDADE COM ID=" << city2 << endl;
             } else{
-                // E pedir para escolher em que cidades quer fazer paragem.
-                // Quando ele termina de escolher, verificar se a rota já existe
-                // Se não existe, adicionar.
                 cityList->printList();
                 int stopoverId;
                 double distance;
                 CityList::City *stopCity;
-                RouteList::Route *route = new RouteList::Route(1, city1, city2);
+                RouteList::Route *route = new RouteList::Route(city1, city2);
                 StopoverQueue::Stopover *stopover;
                 do{
                     cout <<"(Introduza 0 quando terminar) PARAGEM_ID:";
@@ -282,8 +273,17 @@ void listenForInput(CityList *cityList, RouteList *routeList)
                         route->stopoverQueue->enqueue(stopover);
                     }
                 }while (stopoverId != 0);
-                routeList->add(route);
-                cout << "SUCESSO! ROTA ADICIONADA." << endl;
+                RouteList::Route* aux = routeList->getRoute(route);
+                if(aux == NULL)
+                {
+                    routeList->add(route);
+                    cout << "SUCESSO! ROTA ADICIONADA." << endl;
+                    routeList->printRoute(route);
+                }
+                else{
+                    cout << "ERRO! JÁ EXISTE UMA ROTA SEMELHANTE:" << endl;
+                    routeList->printRoute(aux);
+                }
             }
         }
 
@@ -392,10 +392,10 @@ void listenForInput(CityList *cityList, RouteList *routeList)
         }
     }else if(command == "VIAJAR")
     {
-        cout << "ID_CIDADE_EM_QUE_O_JOGADOR_SE_ENCONTRA_ACTUALMENTE:";
+        //cout << "ID_CIDADE_EM_QUE_O_JOGADOR_SE_ENCONTRA_ACTUALMENTE:";
         int city1;
         cin >> city1;
-        cout << "ID_CIDADE_QUE_O_JOGADOR_DESEJAR_VISITAR:";
+        //cout << "ID_CIDADE_QUE_O_JOGADOR_DESEJAR_VISITAR:";
         int city2;
         cin >> city2;
 
@@ -467,28 +467,43 @@ void listenForInput(CityList *cityList, RouteList *routeList)
     }else if(command == "ASSASSINATO_NO_MAPA_MUNDO")
     {
         int sourceId, destinationId;
-        cout << "CIDADE_ASSASSINATO:" ;
+        //cout << "CIDADE_ASSASSINATO:" ;
         cin >> sourceId;
 
         CityList::City *city1 = cityList->getById(sourceId);
         if(city1 == NULL)
             cout << "NÃO EXISTE CIDADE COM ID="<<sourceId << endl;
         else{
-            cout << "CIDADE_DOCUMENTO:";
+            //cout << "CIDADE_DOCUMENTO:";
             cin >> destinationId;
             if(sourceId == destinationId)
                 cout << "O DOCUMENTO ENCONTRA-SE SEMPRE, NUMA CIDADE DIFERENTE"
                         " DA CIDADE ONDE OS POLÍCIAS ESTÃO ACTUALMENTE." << endl;
             else{
-                CityList::City *city2 = cityList->getById(sourceId);
+                CityList::City *city2 = cityList->getById(destinationId);
                 if(city2 == NULL)
                     cout << "NÃO EXISTE CIDADE COM ID=" << destinationId << endl;
                 else{
+                    bool explored[cityList->size()];
+                    for(int i=0; i< cityList->size(); i++)
+                        explored[i] = false;
+
+                    int randomCity = cityList->getRandomCity(destinationId);
+                    ofstream os("Pista.txt");
+                    os << randomCity;
+                    os.close();
+
                     cityList->executeDijkstra(sourceId, destinationId);
-
-
                     int nrCities = readClue();
-                    cout << "nrCities=" << nrCities << endl;
+                    if(nrCities <1)
+                        cout << "PISTA FALSA" << endl;
+                    else
+                    {
+                        cout << "Deve percorrer " << nrCities << " cidades"  << endl;
+                        int criminalCity = cityList->solveCrime(city2, explored, nrCities);
+                        cout << "Criminoso apreendido na cidade " << criminalCity << endl;
+                    }
+
                 }
             }
         }
@@ -504,8 +519,8 @@ int main(){
     CityList* cityList = new CityList;
     RouteList* routeList = new RouteList;
 
-    string name = "Rosário Fernandes";
-    cout << "OLÁ " << name <<  "!" << endl;
+    string username = "Utilizador";
+    cout << "OLÁ CARO " << username <<  "!" << endl;
     cout << "BEM-VINDO AO EDA2JOGO :)" << endl;
 
     listenForInput(cityList, routeList);

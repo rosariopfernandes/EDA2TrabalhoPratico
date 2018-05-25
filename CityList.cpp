@@ -238,3 +238,83 @@ void CityList::findPath(int source, int destination) {
         }
     }
 }
+
+int CityList::getRandomCity(int documentCity) {
+    vector<bool> explored = vector<bool>();
+    for(City *aux = head;aux != NULL; aux = aux->next)
+        explored.push_back(false);
+
+    //Verificar quantas cidades são alcançaveis partindo de documentCity
+    int citiesReachable = nrCitiesReachable(documentCity, explored);
+
+    random_device rd;
+    mt19937 mt(rd());
+
+    uniform_int_distribution<int> distribution(1, citiesReachable);
+    int randomCity = distribution(mt);
+    return randomCity;
+}
+
+int CityList::nrCitiesReachable(int rootVertice, vector<bool>exploredCities) {
+    City *city = getById(rootVertice);
+    pushPilha(city);
+    int citiesReached = 0;
+    while(headPilha != NULL)
+    {
+        city = popPilha();
+        if(city != NULL) {
+            if (!exploredCities[city->id]) {
+                exploredCities[city->id] = true;
+                StreetList::Street *street = city->streetList->head;
+                while (street != NULL) {
+                    pushPilha(street->destination);
+                    street = street->next;
+                }
+                citiesReached++;
+            }
+        }
+    }
+    return citiesReached;
+}
+
+void CityList::pushPilha(City* city) {
+    StackSuccessores *novo_destino = new StackSuccessores;
+    novo_destino->city=city;
+    novo_destino->next = headPilha;
+    headPilha = novo_destino;
+}
+
+CityList::City *CityList::popPilha() {
+    City *city;
+    if(headPilha!=NULL)
+    {
+        city = headPilha->city;
+        headPilha = headPilha->next;
+        return city;
+    }
+    return NULL;
+}
+
+int CityList::solveCrime(City *city, bool explored[], int goal){
+    pushPilha(city);
+    int citiesReached = 0;
+    while(headPilha != NULL)
+    {
+        city = popPilha();
+        if(city != NULL) {
+            if (!explored[city->id]) {
+                explored[city->id] = true;
+                StreetList::Street *street = city->streetList->head;
+                while (street != NULL) {
+                    pushPilha(street->destination);
+                    street = street->next;
+                }
+                citiesReached++;
+                if(citiesReached == goal) {
+                    return city->id;
+                }
+            }
+        }
+    }
+    return -1;
+}

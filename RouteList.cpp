@@ -1,8 +1,8 @@
 
 #include "RouteList.h"
 
-RouteList::Route::Route(int idRoute, int firstCity, int lastCity) {
-    this->idRoute = idRoute;
+RouteList::Route::Route(int firstCity, int lastCity) {
+    this->idRoute = 0;
     this->firstCity = firstCity;
     this->lastCity = lastCity;
     next = NULL;
@@ -19,6 +19,12 @@ bool RouteList::isEmpty() {
 }
 
 void RouteList::add(RouteList::Route *route) {
+    int previousRouteId;
+    if(tail == NULL)
+        previousRouteId = 1;
+    else
+        previousRouteId = tail->idRoute;
+    route->idRoute = previousRouteId+1;
     if(isEmpty())
         head = tail = route;
     else
@@ -96,20 +102,56 @@ RouteList::Route *RouteList::getRoute(int firstCity, int lastCity) {
 
 RouteList::Route *RouteList::getRoute(RouteList::Route *otherRoute) {
     Route* route = head;
+    if(isEmpty())
+        return NULL;
+    else
+        cout << "List was not empty" << endl;
     StopoverQueue *queue;
     StopoverQueue *otherQueue;
-    StopoverQueue::Stopover *stopover;
+    StopoverQueue::Stopover *stopover1, *stopover2;
     while(route != NULL)
     {
-        queue = head->stopoverQueue;
+        if(route->firstCity != otherRoute->firstCity &&
+            route->lastCity != otherRoute->lastCity)
+        {
+            route = route->next;
+            continue;
+        }
+        queue = route->stopoverQueue;
         otherQueue = otherRoute->stopoverQueue;
         while(!queue->isEmpty() || !otherQueue->isEmpty())
         {
-            stopover = queue->dequeue();
-            if(stopover != otherQueue->dequeue())
-                return NULL;
+            stopover1 = queue->dequeue();
+            stopover2 = otherQueue->dequeue();
+            if(stopover1 != NULL && stopover2 != NULL)
+            {
+                if(stopover1->idCity != stopover2->idCity)
+                    return NULL;
+                else
+                    cout << "Same stops" << endl;
+            }
         }
         route = route->next;
     }
     return otherRoute;
+}
+
+bool RouteList::contains(RouteList::Route *route) {
+    Route* aux = head;
+    StopoverQueue *queue;
+    StopoverQueue *otherQueue;
+    StopoverQueue::Stopover *stopover;
+    while(aux != NULL)
+    {
+        queue = head->stopoverQueue;
+        otherQueue = route->stopoverQueue;
+        while(!queue->isEmpty() || !otherQueue->isEmpty())
+        {
+            stopover = queue->dequeue();
+            if(stopover != otherQueue->dequeue())
+                return false;
+        }
+        aux = aux->next;
+    }
+    return true;
 }
